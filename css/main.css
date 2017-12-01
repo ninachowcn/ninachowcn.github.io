@@ -1,0 +1,326 @@
+@charset "UTF-8";
+/**/
+header{
+    width: 100%;
+    height:100px;
+    padding-top:50px;
+    border-bottom: 2px solid rgba(26, 166, 197, 0.671);
+    background: url("../images/header-bg.jpg") no-repeat left -50px/cover;
+}
+header .h-title{
+    width:1200px;
+    height: 200px;
+    margin: 0 auto;
+    /* border:1px solid red; */
+}
+header .h-title img{
+    width:150px;
+    height:150px;
+    margin-top: 25px;
+    margin-left: 40px;
+    border-radius: 100%;
+    padding: 6px;
+    background: #fff;
+    border:2px solid rgba(26, 166, 197, 0.671);
+}
+header .h-title hgroup{
+    display: inline-block;
+    vertical-align: 100px;
+    margin-left:46px;
+}
+.h-title hgroup h1{
+    display: inline-block;
+    font-size: 50px;
+    font-weight: bold;
+    line-height: 50px;
+    font-family: 'Freckle Face' !important;
+}
+.h-title hgroup p{
+    display: inline-block;
+    font-size: 14px;
+    padding-left:2em;
+    color: #666;
+}
+nav{
+    width:498px;
+    padding-left:700px;
+    height:50px;
+    margin:0 auto;
+    /* border: 1px solid pink; */
+}
+nav ul{
+    overflow: hidden;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+}
+nav li{
+    float: left;  
+    background: rgba(26, 166, 197, 0.671);
+}
+nav a{
+    display: block;
+    color: #333;
+    font-size: 18px;
+    line-height: 40px;
+    padding: 0 20px;
+    border: 1px solid rgba(0, 0, 0, 0);
+    border-bottom:1px dashed  #bbb;
+    transition: 2s;
+}
+nav a:hover{
+    font-weight: bold;
+    background: #1ba2c4;
+    color: #fff;
+}
+section{
+    width: 1200px;
+    margin: 50px auto;
+    /* background: pink; */
+    /* height: 1000px; */
+}
+section aside{
+    float: left;
+    width:300px;
+    /* height: 1000px; */
+    /* background: green; */
+}
+aside .a-aboutme{
+    width: 298px;
+    height: 400px;
+    background: #fff;
+    border: 1px solid #999;
+    border-radius: 10px;
+    box-shadow: 0 0 3px 1px #999;
+}
+aside .a-aboutme h2{
+   margin-left:20px;
+   width:56px;
+   font-size: 14px;
+   padding: 0 20px;
+   line-height: 25px;
+   color: #fff;
+   background: #dd5c5c;
+   border-bottom-left-radius: 5px;
+   border-bottom-right-radius: 5px; 
+}
+aside .a-aboutme img{
+    margin-top:15px;
+    margin-left:19px;
+    width: 258px;
+    height: 200px;
+    border-radius: 5px;
+    border:1px solid #ccc;
+}
+aside .a-aboutme p{
+    margin: 10px 20px;
+    font-size: 14px;
+    color: #999;
+}
+aside .a-aboutme .otherlink a{
+    display: inline-block;
+    width:24px;
+    height: 24px;
+    margin-left:20px;
+    margin-top: 10px;
+    transition: 1s;
+}
+aside .a-aboutme .otherlink img{
+    width:24px;
+    height: 24px;
+    margin: 0;
+    border: none;
+}
+aside .a-aboutme .otherlink .i-codecamp{
+    width:130px;
+    height: 24px;
+}
+aside .a-aboutme .otherlink .i-codecamp > img{
+    width:130px;
+    height: 24px;
+}
+aside .a-aboutme .otherlink a:hover{
+    background: #1ba2c4a2;
+    border-radius: 2px;
+}
+aside .a-listbox{
+    width: 298px;
+    background: #fff;
+    border: 1px solid #999;
+    border-radius: 10px;
+    margin-top:20px;
+    box-shadow: 0 0 3px 1px #999;
+}
+aside .a-likelist{
+    height: 360px;
+}
+aside .a-listbox p{
+    position: relative;
+    padding: 10px 14px;
+    font-size: 14px;
+    color: #666;
+    border-bottom: 1px solid #ccc;
+}
+aside .a-listbox p:after{
+    position: absolute;
+    content: "";
+    top:0;
+    left:42px;
+    width: 0;
+    height: 44px;
+    border: .5px solid #ccc;
+}
+aside .a-listbox p i{
+    color: #1ba2c4;;
+    font-size: 16px;
+    padding-right:24px;
+    vertical-align: top;
+}
+aside .a-likelist ul{
+    list-style: disc;
+    padding-left:30px;
+    margin-right:20px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+aside .a-likelist li{
+    position: relative;
+    padding-left:10px;   
+    line-height: 30px;
+}
+aside .a-listbox a{
+    color: #999;
+}
+aside .a-likelist li i{
+    position: absolute;
+    top:0;
+    left:-8px;
+    color: red;
+}
+
+aside .a-articlist ul{
+    margin:10px 20px;
+}
+aside .a-articlist li{
+    float: left;
+    width: 84px;
+    background: #f4f4f4;
+    margin:2px 1px;
+    line-height: 24px;
+    text-indent: 3px;
+    font-size: 11px;
+    border-radius: 4px;
+}
+aside .a-webcount ul{
+    margin:10px 20px;
+}
+aside .a-webcount li{
+    color: #999;
+    line-height: 30px;
+}
+
+section .maincontent{
+    float: left;
+    width: 880px;
+    margin-left: 20px;
+    /* background: #34ac9c;
+    height: 1000px; */
+}
+.maincontent header{
+    height: auto;
+    padding: 0;
+    font-size: 14px;
+}
+.maincontent header a{
+    color: #1ba2c4;
+}
+.maincontent header a:hover{
+    color: #1b5fc4;
+}
+.maincontent .m-box{
+    width: 858px; 
+    background: #fff;
+    border: 1px solid #999;
+    border-radius: 10px;
+    margin-bottom:20px;
+    padding: 10px;
+    box-shadow: 0 0 3px 1px #999;
+}
+.maincontent .m-box{
+    color: #666;
+}
+.maincontent .m-box .a-header{
+    width: 100%;
+    height: 28px;
+    /* background: pink; */
+}
+.maincontent .m-box .a-header span{
+    position: relative;
+    display: inline-block;
+    padding: 5px;
+    color: #fff;
+    background: #1ba2c4;
+    border-radius: 2px;
+}
+.maincontent .m-box .a-header span:after{
+    position: absolute;
+    content: "";
+    width:0;  
+    height: 0;
+    top:7px;
+    right:-14px;
+    border:7px solid rgba(0, 0, 0, 0);
+    border-left-color: #1ba2c4;
+}
+.maincontent .m-box .a-header h3{
+    display: inline-block;
+    font-size: 18px;
+    margin-left: 8px;
+    vertical-align: middle;
+}
+.maincontent .m-box .a-header h3 a{
+   color: #333;
+}
+.maincontent .m-box .a-head2{
+    margin: 15px 0;
+}
+.maincontent .m-box .a-cont{
+    text-indent: 2em;
+    font-size: 14px;
+    line-height: 30px;
+    margin-bottom: 20px;
+    height:60px;
+    overflow: hidden;
+}
+.maincontent .m-box .a-footer{
+    margin: 25px 0;
+}
+.maincontent .m-box .a-footer span{
+    margin-right:10px;
+    vertical-align: middle;
+}
+.maincontent .m-box .a-footer span i{
+    font-size: 14px;
+    margin: 0 4px;
+}
+.maincontent .m-box .a-footer span:nth-child(3){
+    color: #dd5c5c;
+}
+.maincontent .m-box .a-footer span:nth-child(4){
+    margin-left:500px;
+}
+.maincontent .m-box .a-footer span:nth-child(4) a{
+    color: #666;
+}
+.maincontent .m-box .a-footer span:nth-child(4) i{
+    color: #000;
+}
+footer{
+    width: 100%;
+    background: #000;
+    color: #b8b7b7;
+    text-align: center;
+    padding: 10px 0 30px;
+    line-height: 20px;
+    border-top:4px solid #1ba2c4;
+}
