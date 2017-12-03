@@ -11,8 +11,8 @@ input,textarea,select{font-family:inherit;font-size:inherit;font-weight:inherit;
 input,textarea,select{*font-size:100%}
 a{text-decoration:none;}
 i{vertical-align:middle;font-style:normal;}
-body{font:12px PingFang-SC-Regular,Helvetica Neue,Helvetica,microsoft yahei,sans-serif;}
-
+body{font:12px PingFang-SC-Regular,Helvetica Neue,Helvetica,microsoft yahei,sans-serif;background: #ccc;}
+em{font-style: normal;}
 a{
 	display: block;
 	width:100%;
@@ -24,6 +24,7 @@ a{
 .w10{width:10rem;}
 .w-mt{margin-top:.15rem;background-color:#fff;}
 .db{display:block;}
+.df{display:flex;}
 .fl{float:left;}
 .fr{float:right;}
 .clearfix:after{
@@ -39,8 +40,10 @@ a{
 .cf41{color: #fa4113;}
 .cf64{color:#f16a45;}
 .cd11{color:#d11616;}
+.bt{border-top:1px solid #ccc;}
 .br{border-right:1px solid #ccc;}
 .bl{border-left:1px solid #ccc;}
 .bb{border-bottom:1px solid #ccc;}
+.bb2{border-bottom:2px solid #ccc;}
 .br-t{border-right:1px solid transparent;}
 .bl-t{border-left:1px solid transparent;}

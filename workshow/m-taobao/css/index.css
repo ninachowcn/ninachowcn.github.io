@@ -2,7 +2,7 @@
 
 #header{
     width:100%;
-    height:37px;
+    /* height:37px; */
     padding-left:37px;
     padding-top:6px;
     padding-bottom:6px;
@@ -30,7 +30,332 @@
     width:10rem;
     height:3.125rem;
 }
-#content .c-banner img{
+.c-banner img{
+    width:10rem;
+    /* height:3.125rem;  给高度以后，图片变形了 */
+}
+#content .c-catalog{
+    width: 10rem;
+    background:#fff;
+    padding:0 .33rem;
+    box-sizing:border-box;
+}
+.c-catalog ul{
+    /* border: 1px solid red; */
+    padding:.2rem 0;
+}
+.c-catalog ul li{
+    /* border: 1px solid red; */
+    flex-grow:1;
+    text-align: center;
+}
+.c-catalog ul li a{
+    color: #6D92B3;
+}
+.c-catalog ul li div{
+    width:1.625rem;
+    height:1.141rem;
+    margin:0 auto;
+    padding-bottom: .18rem;
+}
+.c-catalog .catalog-list1 li:nth-child(1) div{
+    background:url("../images/tmall.png") center/contain no-repeat;
+}
+.c-catalog .catalog-list1 li:nth-child(2) div{
+    background:url("../images/juhuasuan.png") center/contain no-repeat;
+}
+.c-catalog .catalog-list1 li:nth-child(3) div{
+    background:url("../images/guoji.png") center/contain no-repeat;
+}
+.c-catalog .catalog-list1 li:nth-child(4) div{
+    background:url("../images/waimai.png") center/contain no-repeat;
+}
+.c-catalog .catalog-list1 li:nth-child(5) div{
+    background:url("../images/chaoshi.png") center/contain no-repeat;
+}
+.c-catalog .catalog-list2 li:nth-child(1) div{
+    background:url("../images/chongzhi.png") center/contain no-repeat;
+}
+.c-catalog .catalog-list2 li:nth-child(2) div{
+    background:url("../images/lvxing.png") center/contain no-repeat;
+}
+.c-catalog .catalog-list2 li:nth-child(3) div{
+    background:url("../images/jingbi.png") center/contain no-repeat;
+}
+.c-catalog .catalog-list2 li:nth-child(4) div{
+    background:url("../images/paimai.png") center/contain no-repeat;
+}
+.c-catalog .catalog-list2 li:nth-child(5) div{
+    background:url("../images/fenlei.png") center/contain no-repeat;
+}
+#content .c-hotinfo{
+    height: .8rem;
+    padding: .1rem 0;
+    background: #fff;
+}
+.c-hotinfo .hotinfo-logo{
+    width:2rem;
+    height:.8rem;
+    padding:0 .1rem;
+    background:url("../images/hot.png") center/80% no-repeat;
+}
+.c-hotinfo em{
+    /*固定了框的宽高，会随着屏幕尺寸变化，包裹不住文字*/
+    /* width:.8rem;
+    height:.5rem; */
+    padding:0 .1rem;
+    text-align: center;
+    line-height: .5rem;
+    margin-top:.125rem;
+    margin-left:.125rem;
+    border:1px solid red;
+    border-radius: .18rem;;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+.c-hotinfo p{
+    font-size:14px;
+    width:6rem;
+    line-height:.8rem;
+    margin-left:.1rem;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+#content .c-robshopping{
     width:100%;
-    height:3.125rem;
+    height:5rem;
+    margin-top:.156rem;
+    background: green;
+}
+.c-robshopping ul{
+    background: #fff;
+}
+.c-robshopping li{
+    float: left;
+}
+.c-robshopping li a{
+    padding-left:.25rem;
+    padding-top:.25rem;
+    box-sizing: border-box;
+}
+.c-robshopping li:nth-child(3) a,.c-robshopping li:nth-child(4) a{
+    padding-left:.15rem;
+    padding-top:0;
+}
+.c-robshopping li:nth-child(1){
+    width: 3.8rem;
+    height:5rem;
+}
+.c-robshopping li:nth-child(1) h3{
+    color: #FC2623;
+    font-size: .45rem;
+}
+.c-robshopping li:nth-child(1) h3 i{
+    font-size: .4rem;
+    vertical-align: top;
+    padding-right: .1rem;
+}
+.c-robshopping li:nth-child(1) p{
+    font-size: .3rem;
+    color: #707070;
+    margin-bottom: .18rem;
+}
+.c-robshopping li:nth-child(1) span{
+    display: inline-block;
+    font-size: .28rem;
+    color: #fff;
+    width:.5rem;
+    height:.5rem;
+    text-align: center;
+    line-height: .5rem;
+    background: #000;
+}
+.c-robshopping li:nth-child(1) em{
+    font-weight: bold;
+    font-size: .28rem;
+    vertical-align: .02rem;
+}
+
+.c-robshopping li:nth-child(1) div{
+    width:3.2rem;
+    height: 2.8rem;
+    background: url("../images/taoqianggou.jpg") bottom/contain no-repeat;
+}
+.c-robshopping li:nth-child(2){
+    width: 6.15rem;
+    height:2.3rem;
+    background: url("../images/guess4.jpg") right top/contain no-repeat;
+}
+.c-robshopping li:nth-child(2) h3{
+    color: #3BC9FC;
+    font-size: .45rem;
+}
+.c-robshopping li:nth-child(2) h3 i{ 
+    font-size: .4rem;
+    vertical-align: top;
+    padding-right: .1rem;
+}
+.c-robshopping li:nth-child(2) p{
+    font-size: .3rem;
+    color: #707070;
+    margin-bottom: .12rem;
+}
+.c-robshopping li:nth-child(2) span{
+    font-size: .28rem;
+    color: #69c4e2;
+}
+.c-robshopping li:nth-child(3){
+    padding-top:.15rem;
+    width: 3.1rem;
+    height:2.53rem;
+    background:url("../images/guangjie.jpg") center bottom/contain no-repeat;
+}
+.c-robshopping li:nth-child(3) h3{
+    color: #FB75A3;
+    font-size: .4rem;
+}
+.c-robshopping li:nth-child(3) h3 i,.c-robshopping li:nth-child(4) h3 i{
+    vertical-align: top;
+    padding-right: .09rem;
+    font-size: .4rem;
+}
+.c-robshopping li:nth-child(3) p,.c-robshopping li:nth-child(4) p{
+    font-size: .3rem;
+    color: #707070;
+}
+.c-robshopping li:nth-child(4){
+    padding-top:.15rem;
+    width: 3rem;
+    height:2.53rem;
+    background:url("../images/qingdan.png") center bottom/contain no-repeat;
+}
+.c-robshopping li:nth-child(4) h3{
+    color: #FC8E88;
+    font-size: .4rem;
+}
+
+#content .c-supercheap,#content .c-mustgo{
+    margin-top:.2rem;
+    width:10rem;
+    background:#Fff;
+}
+.c-supercheap h2,.c-mustgo h2{
+    width: 100%;
+    font-size: 14px;
+    color: #FC3823;
+    text-align:center;
+    line-height: .844rem;
+}
+.c-supercheap h2 i,.c-mustgo h2 i{
+    padding-right: .1rem;
+}
+.c-supercheap ul{
+    height:3rem;
+    display: flex;
+}
+.c-supercheap li a{
+    padding-top:.1rem;
+    padding-left:.1rem;
+    box-sizing: border-box;
+}
+
+.c-supercheap li:nth-child(1){
+    width: 3.8rem;
+    background: url("../images/shihui1.jpg")  bottom/contain no-repeat;
+}
+.c-supercheap li p{
+    font-size: .3rem;
+    color: #fa6254;
+}
+.c-supercheap li span{
+    color: #000;
+}
+.c-supercheap li:nth-child(1) span{
+    font-size: .4rem;
+}
+.c-supercheap li:nth-child(1) em{
+    color: #f75142;
+    border:1px solid #f75142;
+    border-radius: .3rem;
+    padding:0 .1rem;
+    font-family:Trebuchet MS;
+    font-weight: lighter;
+}
+.c-supercheap li:nth-child(n+2){
+    border-left:1px solid #ccc;
+    flex-grow: 1;
+}
+.c-supercheap li:nth-child(n+2) span{
+    font-size: .35rem;
+}
+.c-supercheap li:nth-child(2){
+    background: url("../images/shihui2.png")  bottom/contain no-repeat;
+}
+.c-supercheap li:nth-child(3){
+    background: url("../images/shihui3.png")  bottom/contain no-repeat;
+}
+.c-supercheap li:nth-child(4){
+    background: url("../images/shihui4.jpg")  bottom/contain no-repeat;
+}
+.c-supercheap .list2 li:nth-child(1){
+    background: url("../images/shihui5.png")  bottom/contain no-repeat;
+}
+.c-supercheap .list2 li:nth-child(2){
+    background: url("../images/shihui6.jpg")  bottom/contain no-repeat;
+}
+.c-supercheap .list2 li:nth-child(3){
+    background: url("../images/shihui7.jpg")  bottom/contain no-repeat;
+}
+.c-supercheap .list2 li:nth-child(4){
+    background: url("../images/shihui8.png")  bottom/contain no-repeat;
+}
+
+#content .c-mustgo li{
+    float: left;    
+    height:3rem;
+}
+.c-mustgo li a{
+    box-sizing: border-box;
+}
+.c-mustgo li h3{
+    color: #222;
+    font-size: .4rem;
+    padding-top: .2rem;
+    padding-left:.2rem;
+}
+.c-mustgo li p{
+    color: #222;
+    font-size: .35rem;
+    padding-top: .2rem;
+    padding-left:.2rem;
+}
+.c-mustgo li span{
+    color: #666;
+    font-size: .3rem;
+    padding-left:.2rem;
+}
+.c-mustgo li:nth-child(1),.c-mustgo li:nth-child(2){
+    width:50%; 
+}
+.c-mustgo li:nth-child(n+3){
+    width:25%;
+}
+.c-mustgo li:nth-child(1){
+    background: url("../images/biguang1.png") bottom/contain no-repeat;
+}
+.c-mustgo li:nth-child(2){
+    background: url("../images/biguang2.png") bottom/contain no-repeat;
+}
+.c-mustgo li:nth-child(3){
+    background: url("../images/biguang3.png") bottom/contain no-repeat;
+}
+.c-mustgo li:nth-child(4){
+    background: url("../images/biguang4.jpg") bottom/contain no-repeat;
+}
+.c-mustgo li:nth-child(5){
+    background: url("../images/biguang5.jpg") bottom/contain no-repeat;
+}
+.c-mustgo li:nth-child(6){
+    background: url("../images/biguang6.jpg") bottom/contain no-repeat;
 }
