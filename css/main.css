@@ -42,6 +42,8 @@ header .h-title hgroup{
     color: #666;
 }
 nav{
+    position: relative;
+    z-index: 3;
     width:498px;
     padding-left:700px;
     height:50px;
@@ -53,24 +55,46 @@ nav ul{
     border-bottom-left-radius: 6px;
     border-bottom-right-radius: 6px;
 }
-nav li{
+nav ul li{
     float: left;  
     background: rgba(26, 166, 197, 0.671);
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
 }
-nav a{
+nav ul li:nth-child(2){
+    height:42px;
+    overflow: hidden;
+    transition: 1s;
+    text-align: center;
+    font-size: 18px;
+    line-height: 40px;   
+}
+nav ul li:nth-child(2) a{
+    color: #fff;
+}
+nav ul li:nth-child(2) a:hover{
+    font-weight: bold;
+    color: #073385;
+}
+nav ul li:nth-child(2):hover{
+    height:240px;
+}
+nav li>a{
     display: block;
-    color: #333;
+    color: #fff;
     font-size: 18px;
     line-height: 40px;
     padding: 0 20px;
     border: 1px solid rgba(0, 0, 0, 0);
-    border-bottom:1px dashed  #bbb;
+    /* border-bottom:1px dashed  #bbb; */
     transition: 2s;
 }
-nav a:hover{
+nav li>a:hover{
     font-weight: bold;
     background: #1ba2c4;
-    color: #fff;
+    color: #073385;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
 }
 section{
     width: 1200px;
