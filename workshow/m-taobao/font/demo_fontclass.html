@@ -1,0 +1,118 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>IconFont</title>
+    <link rel="stylesheet" href="demo.css">
+    <link rel="stylesheet" href="iconfont.css">
+</head>
+<body>
+    <div class="main markdown">
+        <h1>IconFont 图标</h1>
+        <ul class="icon_lists clear">
+            
+                <li>
+                <i class="icon iconfont icon-search"></i>
+                    <div class="name">search</div>
+                    <div class="fontclass">.icon-search</div>
+                </li>
+            
+                <li>
+                <i class="icon iconfont icon-gengduo"></i>
+                    <div class="name">更多</div>
+                    <div class="fontclass">.icon-gengduo</div>
+                </li>
+            
+                <li>
+                <i class="icon iconfont icon-f0ac6260be074ee88d4acfb06bb00731"></i>
+                    <div class="name">陪逛街</div>
+                    <div class="fontclass">.icon-f0ac6260be074ee88d4acfb06bb00731</div>
+                </li>
+            
+                <li>
+                <i class="icon iconfont icon-iconfontyoujiantou"></i>
+                    <div class="name">右箭头</div>
+                    <div class="fontclass">.icon-iconfontyoujiantou</div>
+                </li>
+            
+                <li>
+                <i class="icon iconfont icon-zantong"></i>
+                    <div class="name">赞同</div>
+                    <div class="fontclass">.icon-zantong</div>
+                </li>
+            
+                <li>
+                <i class="icon iconfont icon-cainixihuan"></i>
+                    <div class="name">猜你喜欢</div>
+                    <div class="fontclass">.icon-cainixihuan</div>
+                </li>
+            
+                <li>
+                <i class="icon iconfont icon-shihui101"></i>
+                    <div class="name">实惠1-01</div>
+                    <div class="fontclass">.icon-shihui101</div>
+                </li>
+            
+                <li>
+                <i class="icon iconfont icon-qingdan"></i>
+                    <div class="name">清单</div>
+                    <div class="fontclass">.icon-qingdan</div>
+                </li>
+            
+                <li>
+                <i class="icon iconfont icon-Shape"></i>
+                    <div class="name">时间</div>
+                    <div class="fontclass">.icon-Shape</div>
+                </li>
+            
+                <li>
+                <i class="icon iconfont icon-shouye"></i>
+                    <div class="name">首页</div>
+                    <div class="fontclass">.icon-shouye</div>
+                </li>
+            
+                <li>
+                <i class="icon iconfont icon-wuliu"></i>
+                    <div class="name">物流</div>
+                    <div class="fontclass">.icon-wuliu</div>
+                </li>
+            
+                <li>
+                <i class="icon iconfont icon-taobaogouwuche_ios"></i>
+                    <div class="name">淘宝购物车</div>
+                    <div class="fontclass">.icon-taobaogouwuche_ios</div>
+                </li>
+            
+                <li>
+                <i class="icon iconfont icon-wode"></i>
+                    <div class="name">我的</div>
+                    <div class="fontclass">.icon-wode</div>
+                </li>
+            
+        </ul>
+
+        <h2 id="font-class-">font-class引用</h2>
+        <hr>
+
+        <p>font-class是unicode使用方式的一种变种，主要是解决unicode书写不直观，语意不明确的问题。</p>
+        <p>与unicode使用方式相比，具有如下特点：</p>
+        <ul>
+        <li>兼容性良好，支持ie8+，及所有现代浏览器。</li>
+        <li>相比于unicode语意明确，书写更直观。可以很容易分辨这个icon是什么。</li>
+        <li>因为使用class来定义图标，所以当要替换图标时，只需要修改class里面的unicode引用。</li>
+        <li>不过因为本质上还是使用的字体，所以多色图标还是不支持的。</li>
+        </ul>
+        <p>使用步骤如下：</p>
+        <h3 id="-fontclass-">第一步：引入项目下面生成的fontclass代码：</h3>
+
+
+        <pre><code class="lang-js hljs javascript"><span class="hljs-comment">&lt;link rel="stylesheet" type="text/css" href="./iconfont.css"&gt;</span></code></pre>
+        <h3 id="-">第二步：挑选相应图标并获取类名，应用于页面：</h3>
+        <pre><code class="lang-css hljs">&lt;<span class="hljs-selector-tag">i</span> <span class="hljs-selector-tag">class</span>="<span class="hljs-selector-tag">iconfont</span> <span class="hljs-selector-tag">icon-xxx</span>"&gt;&lt;/<span class="hljs-selector-tag">i</span>&gt;</code></pre>
+        <blockquote>
+        <p>"iconfont"是你项目下的font-family。可以通过编辑项目查看，默认是"iconfont"。</p>
+        </blockquote>
+    </div>
+</body>
+</html>

@@ -1,0 +1,36 @@
+@charset "utf-8";
+
+#header{
+    width:100%;
+    height:37px;
+    padding-left:37px;
+    padding-top:6px;
+    padding-bottom:6px;
+    padding-right:.2rem;
+    box-sizing:border-box;
+    background: #FB551F url("../images/logo.png") 5px /28px no-repeat;
+}
+#header p{
+    width:100%;
+    line-height: 25px;
+    background: #B32811;
+    border-radius: 6px;
+    text-align: center;
+    font-size: 13px;
+}
+#header p a{
+    color: #F0E0D6;
+}
+#content{
+    width: 10rem;
+    margin:0 auto;
+    background:pink;
+}
+#content .c-banner{
+    width:10rem;
+    height:3.125rem;
+}
+#content .c-banner img{
+    width:100%;
+    height:3.125rem;
+}

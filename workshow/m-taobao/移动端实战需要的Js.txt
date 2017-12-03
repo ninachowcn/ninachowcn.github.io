@@ -1,0 +1,6 @@
+(function change(){
+			var oFz = document.getElementsByTagName("html")[0];
+			var width = window.innerWidth;
+			oFz.style.fontSize = width>540?54+"px":width/10 +"px";
+			window.onresize=function(){change();};
+		})();

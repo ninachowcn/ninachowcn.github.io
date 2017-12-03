@@ -1,0 +1,87 @@
+<!doctype html>
+<html style="font-size:54px">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content="ninachow">
+    <meta name="Keywords" content="ninachow,blog">
+    <meta name="Description" content="ninachow 的博客首页，对前端开发都一些总结文章和作品">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1.0,minimum-scale=1.0,user-scalable=0" />
+    <link rel="stylesheet" type="text/css" href="font/iconfont.css">
+    <link type="text/css" rel="stylesheet" href="css/base.css">
+    <link type="text/css" rel="stylesheet" href="css/index.css">
+    <link type="text/css" rel="stylesheet" href="css/swiper-3.4.2.min.css">
+
+    <title>淘宝手机移动端</title>
+</head>
+
+<body>
+    <header id="header">
+        <p>
+            <a href="#">
+                <i class="iconfont icon-search"></i>寻找宝贝店铺</a>
+        </p>
+    </header>
+    <div id="content">
+        <div class="c-banner">
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <a href="#">
+                            <img src="images/banner1.jpg" alt="1">
+                        </a>
+
+                    </div>
+                    <div class="swiper-slide">
+                        <a href="#">
+                            <img src="images/banner2.jpg" alt="2">
+                        </a>
+
+                    </div>
+                    <div class="swiper-slide">
+                        <a href="#">
+                            <img src="images/banner3.jpg" alt="3">
+                        </a>
+
+                    </div>
+                    <div class="swiper-slide">
+                        <a href="#">
+                            <img src="images/banner4.jpg" alt="4">
+                        </a>
+
+                    </div>
+                    <div class="swiper-slide">
+                        <a href="#">
+                            <img src="images/banner5.jpg" alt="5">
+                        </a>
+
+                    </div>
+                    <div class="swiper-slide">
+                        <a href="#">
+                            <img src="images/banner6.jpg" alt="6">
+                        </a>
+
+                    </div>
+                    <div class="swiper-slide">
+                        <a href="#">
+                            <img src="images/banner7.jpg" alt="7">
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="js/swiper-3.4.2.min.js"></script>
+    <script>
+        var mySwiper = new Swiper('.swiper-container', {
+            loop: true,
+            simulateTouch: false,
+            autoplay: 3000,//可选选项，自动滑动
+        })
+    </script>
+</body>
+
+</html>
