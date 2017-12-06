@@ -1,0 +1,43 @@
+<!doctype html>
+<html style="font-size:54px">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content="ninachow">
+    <meta name="Keywords" content="ninachow,blog">
+    <meta name="Description" content="ninachow 的博客首页，对前端开发都一些总结文章和作品">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1.0,minimum-scale=1.0,user-scalable=0" />
+    <link rel="stylesheet" type="text/css" href="font/iconfont.css">
+    <link type="text/css" rel="stylesheet" href="css/base.css">
+    <link type="text/css" rel="stylesheet" href="css/index.css">
+    <link type="text/css" rel="stylesheet" href="css/swiper-3.4.2.min.css">
+
+    <title>苏宁手机移动端</title>
+</head>
+
+<body>
+
+
+
+
+
+    <!-- 轮播引入js文件 -->
+    <script src="js/swiper-3.4.2.min.js"></script>
+    <script>
+        // 根据不同的移动端屏幕尺寸，自动适应各个型号
+        (function change() {
+            var oFz = document.getElementsByTagName("html")[0];
+            var width = window.innerWidth;
+            oFz.style.fontSize = width > 540 ? 54 + "px" : width / 10 + "px";
+            window.onresize = function () { change(); };
+        })();
+        // 轮播调用方法
+        var mySwiper = new Swiper('.swiper-container', {
+            loop: true,
+            // simulateTouch: false,
+            autoplay: 3000,//可选选项，自动滑动
+        })
+    </script>
+</body>
+
+</html>
