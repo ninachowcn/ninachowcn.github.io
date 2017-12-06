@@ -7,6 +7,9 @@ input{outline:none;}
 a{text-decoration:none;color:inherit;outline:none;}
 body{font:0.14rem/1.5 'Microsoft Yahei',sans-serif;/*sans-serif 是手机默认字体*/}
 
+
+/* 给a元素添加一个样式 */
+.d-block{display: block;width: 100%;height: 100%;}
 /*---------------------------------------
 				 font 
 ---------------------------------------*/
@@ -89,7 +92,7 @@ body{font:0.14rem/1.5 'Microsoft Yahei',sans-serif;/*sans-serif 是手机默认�
 .mar-t10{margin-top:10px;}
 .mar-t15{margin-top:15px;}
 .mar-t20{margin-top:20px;}
-.mar-t25{margin-top:25px;}
+.mar-t25{margin-top:.25rem;}
 .mar-t30{margin-top:30px;}
 .mar-t5{margin-top:5px;}
 
@@ -97,7 +100,7 @@ body{font:0.14rem/1.5 'Microsoft Yahei',sans-serif;/*sans-serif 是手机默认�
 .mar-r10{margin-right:10px;}
 .mar-r15{margin-right:15px;}
 .mar-r20{margin-right:20px;}
-.mar-r25{margin-right:25px;}
+.mar-r25{margin-right:25rem;}
 .mar-r30{margin-right:30px;}
 
 .mar-b5{margin-bottom:5px;}

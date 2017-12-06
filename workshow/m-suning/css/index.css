@@ -1,3 +1,266 @@
 @charset 'utf-8';
 
 body{background-color:#f2f2f2}
+
+.wrap{
+    max-width: 750px;
+    margin: 0 auto;
+}
+#header{ 
+    width:7.5rem;   
+}
+#header .h-nav {
+    display: flex;
+    position: fixed;
+    top:0;
+    width:100%;
+    height:.9rem;
+    z-index: 10;
+    background: rgba(248, 184, 47, 0.801);
+}
+.h-nav .h-nav-left{
+    display: inline-block;
+    width: .85rem;
+    height: .7rem;
+    padding: .1rem 0;
+    background: url("../images/01-search/1.png") center/55% no-repeat;
+}
+.h-nav .h-nav-rgt{
+    display: inline-block;
+    width: .85rem;
+    height: .7rem;
+    padding: .1rem 0;
+    background: url("../images/01-search/3.png") center/55% no-repeat;
+}
+.h-nav .h-nav-mid{
+    position: relative;
+    display: inline-block;
+    width: 5.8rem;
+    height: .6rem;
+    padding: .15rem 0;
+}
+.h-nav .h-nav-mid p{
+    width:5.35rem;
+    height:100%;
+    background: rgba(255, 255, 255, 0.822);
+    font-size: .22rem;
+    border-radius: .6rem;
+    line-height: .6rem;
+    padding-left: .45rem;
+}
+.h-nav .h-nav-mid img{
+    position: absolute;
+    top:.3rem;
+    left:.1rem;
+    width: .3rem;
+    height:.3rem;
+}
+#header .h-banner{
+    width:100%;
+    height: 3rem;
+}
+.h-banner img{
+    width:7.5rem;
+    height: 3rem;
+}
+.h-banner .swiper-pagination{
+    text-align: right;
+    padding-right: .2rem;
+}
+#header .h-banner .swiper-pagination-bullets{
+    width:95%;
+}
+#header .h-banner .swiper-pagination-bullet{
+    width:.15rem;
+    height:.15rem;
+} 
+#header .h-banner .swiper-pagination-bullet-active{
+    background: #f8b52f;
+}
+
+#content .c-ad img{
+    width:7.5rem;
+    height:2rem;
+}
+#content .c-mainnav{
+    width:7.5rem;
+    background: #fff;
+}
+.c-mainnav ul{
+    display: flex;
+    width:100%;
+    flex-wrap: wrap;
+    padding-top:.22rem;
+}
+.c-mainnav ul li{
+    width:20%;
+    font-size: .22rem;
+    text-align: center;
+}
+.c-mainnav ul li a{ display: block;width: 100%;height: 100%;}
+
+.c-mainnav ul li img{
+    width:.75rem;
+    height:.75rem;
+}
+.c-mainnav ul li p{
+    line-height: .7rem;
+    color: #444;
+}
+
+#content section .c-sect-header{
+    width:7.5rem;
+    height:.8rem;
+}
+#content .c-sale{
+    position: relative;
+    width:7.5rem;
+    height:3.15rem;
+    background: url("../images/04-sale/1.jpg") left top/cover no-repeat;
+}
+.c-sale .c-sect-header .c-sh-left{
+    float: left;
+    width:1.24rem;
+    height:.35rem;
+    margin-left:.3rem;
+    margin-top:.225rem;
+}
+.c-sale .c-sect-header .c-sh-rgt{
+    float: right;
+    width:1.75rem;
+    height:.33rem;
+    margin-top:.235rem;
+    margin-right:.3rem;
+}
+.c-sale .c-sect-header span{
+    font-size: .22rem;
+    line-height: .8rem;
+    margin-left:.1rem;
+}
+.c-sale .c-sale-a{
+    position: absolute;
+    width: 100%;
+    height:100%;
+}
+.c-sale ul{
+    position: absolute;
+    top:.68rem;
+    right:.3rem;
+}
+.c-sale li{
+    float: left;
+    width: 1.85rem;
+    height:2.4rem;
+    background: #fff;
+    margin-right:.15rem;
+    border-radius: .1rem;
+    text-align: center;
+}
+.c-sale li p{
+    font-size: .25rem;
+    padding: .1rem 0;
+}
+.c-sale li img{
+    width:1.35rem;
+    height:1.35rem;
+}
+.c-sale li span{
+    display: block;
+    font-size: .22rem;
+    color: #fff;
+    background: red;
+    width:1rem;
+    border-radius: .5rem;
+    margin: 0 auto;
+}
+#content .c-rob{
+    background: #fff;
+}
+.c-rob .c-sect-header .c-sh-left{
+    float: left;
+    width:1.24rem;
+    height:.4rem;
+    margin-left:.3rem;
+    margin-top:.2rem;
+}
+.c-rob .c-sect-header .c-sh-rgt{
+    float: right;
+    width:.15rem;
+    height:.25rem;
+    margin-top:.3rem;
+    margin-right:.3rem;
+}
+.c-rob .c-sect-header span{
+    font-size: .22rem;
+    margin-top:.3rem;
+    margin-left:.1rem;
+}
+.c-rob .c-sect-header span:nth-child(4){
+    width:1.8rem;
+    line-height: .35rem;
+    height:.35rem;
+    background: red;
+    color: #fff;
+    text-align: center;
+    border-radius: .5rem;
+    margin-top:.25rem;
+    margin-right:.1rem;
+}
+.c-rob .c-rob-banner{
+    width:7.5rem;
+}
+.c-rob .c-rob-banner img{
+    height:1.24rem;
+    width:1.5rem;
+    margin-top:.1rem;
+}
+.c-rob .c-rob-banner p{
+    font-size: .25rem;
+    line-height: .4rem;
+    color: red;
+}
+.c-rob .c-rob-banner del{
+    font-size: .2rem;
+    color: #999;
+}
+.c-rob .c-rob-banner .last{
+    background:#f0f0f0;  
+}
+.c-rob .c-rob-banner .last div{
+    padding-top:.5rem;
+}
+.c-rob .c-rob-banner .last p{
+    color: #444; 
+    line-height: .5rem;
+}
+.c-rob .c-rob-banner .last i{
+    display: inline-block;
+    width:.2rem;
+    height:.2rem;
+    margin-top:.2rem;
+    background: url("../images/05-rush/more.png") center/cover no-repeat;
+}
+.c-rob .swiper-container-rob{
+    overflow: hidden;
+}
+.c-rob .swiper-container-rob .swiper-slide{
+    /* width:1.6rem ; */
+    height:2.2rem;
+    text-align: center;
+}
+.c-rob .c-rob-ad a img{
+    width:100%;
+    height:100%;
+}
+.c-rob .c-rob-ad a:nth-child(1) img{
+    width:100%;
+    height:2rem;
+}
+.c-rob .c-rob-ad a:nth-child(2),.c-rob .c-rob-ad a:nth-child(3),.c-rob .c-rob-ad a:nth-child(4),.c-rob .c-rob-ad a:nth-child(5){
+    width:50%;
+    height:1.5rem;
+}
+.c-rob .c-rob-ad a:nth-child(n+6){
+    width:25%;
+    height:3rem;
+}
