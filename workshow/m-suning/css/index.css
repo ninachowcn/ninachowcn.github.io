@@ -59,11 +59,11 @@ body{background-color:#f2f2f2}
     width:100%;
     height: 3rem;
 }
-.h-banner img{
+#header .h-banner img{
     width:7.5rem;
     height: 3rem;
 }
-.h-banner .swiper-pagination{
+#header .h-banner .swiper-pagination{
     text-align: right;
     padding-right: .2rem;
 }
@@ -244,7 +244,7 @@ body{background-color:#f2f2f2}
     overflow: hidden;
 }
 .c-rob .swiper-container-rob .swiper-slide{
-    /* width:1.6rem ; */
+    width:1.6rem ;
     height:2.2rem;
     text-align: center;
 }
@@ -263,4 +263,213 @@ body{background-color:#f2f2f2}
 .c-rob .c-rob-ad a:nth-child(n+6){
     width:25%;
     height:3rem;
+}
+
+#content section{
+    width:7.5rem;
+    background: #fff;
+}
+section .c-con-header{
+    height:.8rem;
+    text-align: center;
+}
+section .c-con-header span{
+    position: relative;
+    font-size: .3rem;
+    padding:0 .5rem;
+    line-height: .5rem;
+}
+section .c-con-header span::before{
+    position: absolute;
+    content: "";
+    width:.3rem;
+    height:0;
+    top:.2rem;
+    left:0rem;
+    border:1px solid #999;
+}
+section .c-con-header span::after{
+    position: absolute;
+    content: "";
+    width:.3rem;
+    height:0;
+    top:.2rem;
+    right:0rem;
+    border:1px solid #999;
+}
+section .c-con-header p{
+    font-size: .18rem;
+    color: #999;
+}
+section .c-conul-header{
+    margin-top:.2rem;
+    margin-left: .25rem;
+}
+section .c-conul-header span{
+    font-size: .25rem;
+    color: #444;
+}
+section .c-conul-header p{
+    font-size: .2rem;
+    color: #666;
+}
+section .c-conul-header img{
+    width:1.45rem;
+    height:1.45rem;
+    margin:.2rem 0  .25rem 0;
+}
+
+#content .c-banner{
+    width:7.5rem;
+    height:2rem;
+}
+#content .c-banner img{
+    width:100%;
+    height:2rem;
+} 
+
+.c-recommend .em{
+    color: #fff;
+    font-size: .2rem;
+    background: #f8c332;
+    padding: 0 .1rem;
+    border-radius: .2rem;
+    vertical-align: 2px;
+    margin-right: .1rem;
+}
+#content .c-recommend img{
+    margin:0 0 .25rem 0;
+}
+#content .c-shoudbuy li p{
+    width:90%;
+    font-size: .25rem;
+    color: #444;
+}
+#content .c-shoudbuy li p i{
+    display: inline-block;
+    width: .2rem;
+    height:.2rem;
+    background: url("../images/yinhao.png") no-repeat;
+}
+
+#content .c-goodshop li .headimg{
+    width:.5rem;
+    height:.5rem;
+    margin: .01rem 0 0 0;
+}
+#content .c-goodshop .texttitle{
+    line-height: .25rem;
+    margin-left: .1rem;
+}
+#content .c-goodshop .threeimg img:nth-child(1){
+    width:2.22rem;
+    height:2.22rem;
+}
+#content .c-goodshop .threeimg img:nth-child(n+2){
+    width:1.11rem;
+    height:1.11rem;
+    margin: 0;
+}
+#content .c-goodshop .threeimg img:nth-child(2){
+    margin-top: .2rem;
+}
+#content .c-guess{
+    width: 100%;
+}
+.c-guess .c-g-header {
+    text-align: center;
+}
+.c-guess .c-g-header span em{
+    position: absolute;
+    display: inline-block;
+    width:.3rem;
+    height:.3rem;
+    top:.05rem;
+    left:0;
+    background: url("../images/08-love/1.png") center/cover no-repeat;
+}
+.c-guess .c-g-header span{
+    position: relative;
+    font-size: .3rem;
+    padding-left:.4rem;
+}
+.c-guess .c-g-header span::before{
+    position: absolute;
+    content: "";
+    width:2.5rem;
+    height:0;
+    top:.2rem;
+    left:-2.7rem;
+    border:.5px solid #d6d6d6;
+}
+.c-guess .c-g-header span::after{
+    position: absolute;
+    content: "";
+    width:2.5rem;
+    height:0;
+    top:.2rem;
+    right:-2.7rem;
+    border:.5px solid #d6d6d6;
+}
+.c-guess .c-g-header p{
+    font-size: .25rem;
+    color: #f8c332;
+    padding-left: .1rem;
+}
+.c-guess ul li{
+    width: 50%;  
+    text-align: center;
+    background: #fff;
+    box-sizing: border-box;
+}
+.c-guess li .mainimg{
+    width:3.35rem;
+    height:3.35rem;
+}
+.c-guess li p{
+    width:90%;
+    margin-top: .1rem;
+    margin-left:.25rem;
+    text-align: left;
+    font-size: .25rem;
+    line-height: .35rem;
+    color: #333;
+}
+.c-guess li p img{
+    width:.28rem;
+    height:.28rem;
+    padding-right: .1rem;
+}
+.c-guess li .label{
+    height:.3rem;
+    text-align: left;
+    margin:.1rem .25rem;
+}
+.c-guess li .label span{
+    display: inline-block;
+    background: #f88a2f;
+    color: #fff;
+    padding: 0 .1rem;
+    font-size: .22rem;
+    line-height: .3rem;
+    margin-right: .1rem;
+}
+.c-guess li .price{
+    height:.6rem;
+    text-align: left;
+    margin:.1rem .25rem;
+}
+.c-guess li .price em{
+    font-size: .3rem;
+    color: red;
+}
+.c-guess li .price i{
+    display: inline-block;
+    margin-left:1.3rem;
+    font-style: normal;
+    font-size: .25rem;
+    padding:.06rem .1rem;
+    border:1px solid #f8c332;
+    color: #f8c332;
+    border-radius: .1rem;
 }

@@ -6,10 +6,19 @@ img{border:none;vertical-align:middle;}
 input{outline:none;}
 a{text-decoration:none;color:inherit;outline:none;}
 body{font:0.14rem/1.5 'Microsoft Yahei',sans-serif;/*sans-serif 是手机默认字体*/}
-
+em{font-style: normal;}
 
 /* 给a元素添加一个样式 */
 .d-block{display: block;width: 100%;height: 100%;}
+
+/* 增加弹性盒模型样式  */
+.d-flex{display: flex;}
+.fw-w{flex-wrap: wrap;}
+.f-g{flex-grow: 1;}
+
+/* 弹性盒子常用宽度 */
+.w-50{width:50%;}
+.w-25{width:25%;}
 /*---------------------------------------
 				 font 
 ---------------------------------------*/
@@ -91,7 +100,7 @@ body{font:0.14rem/1.5 'Microsoft Yahei',sans-serif;/*sans-serif 是手机默认�
 .mar-t5{margin-top:5px;}
 .mar-t10{margin-top:10px;}
 .mar-t15{margin-top:15px;}
-.mar-t20{margin-top:20px;}
+.mar-t20{margin-top:.2rem;}
 .mar-t25{margin-top:.25rem;}
 .mar-t30{margin-top:30px;}
 .mar-t5{margin-top:5px;}
@@ -105,9 +114,9 @@ body{font:0.14rem/1.5 'Microsoft Yahei',sans-serif;/*sans-serif 是手机默认�
 
 .mar-b5{margin-bottom:5px;}
 .mar-b10{margin-bottom:10px;}
-.mar-b15{margin-bottom:15px;}
-.mar-b20{margin-bottom:20px;}
-.mar-b25{margin-bottom:25px;}
+.mar-b15{margin-bottom:.15rem;}
+.mar-b20{margin-bottom:.2rem;}
+.mar-b25{margin-bottom:.25rem;}
 .mar-b30{margin-bottom:30px;}
 
 .mar-l5{margin-left:5px;}
