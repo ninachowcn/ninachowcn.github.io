@@ -27,6 +27,11 @@ body{
 a{
     text-decoration:none;
 }
+.d-block{
+    display: block;
+    width:100%;
+    height:100%;
+}
 .clearfix:after{
     display: block;
     content: "";

@@ -1,0 +1,161 @@
+<!doctype <html>
+<head>
+    <meta charset="utf-8">
+    <title>鼠标拖拽移动icon</title>
+</head>
+
+<style>
+*{
+    padding:0;
+    margin:0;
+}
+#mytable{
+    width:640px;
+    height: 400px;
+    margin:200px auto;
+    border: 1px solid #000;
+    border-radius:10px;
+}
+ul{
+    position: relative;
+    height: 400px;
+    margin-bottom:10px;
+}
+li{
+    float: left;
+    width: 200px;
+    height: 120px;
+    margin-top:10px;
+    margin-left:10px;
+    border-radius:10px;
+    list-style: none;
+}
+img{
+    width: 200px;
+    height: 120px;
+    border-radius:10px;
+}
+</style>
+
+<body>
+<div id="mytable">
+    <ul>
+        <li><img src='iconmoveImg/1.png' width='370' height='224' alt='1'></li>
+        <li><img src='iconmoveImg/2.png' width='370' height='224' alt='2'></li>
+        <li><img src='iconmoveImg/3.png' width='370' height='224' alt='3'></li>
+        <li><img src='iconmoveImg/4.png' width='370' height='224' alt='4'></li>
+        <li><img src='iconmoveImg/5.png' width='370' height='224' alt='5'></li>
+        <li><img src='iconmoveImg/6.png' width='370' height='224' alt='6'></li>
+        <li><img src='iconmoveImg/7.png' width='370' height='224' alt='7'></li>
+        <li><img src='iconmoveImg/8.png' width='370' height='224' alt='8'></li>
+        <li><img src='iconmoveImg/9.png' width='370' height='224' alt='9'></li>
+    </ul>
+</div>
+</body>
+<script>
+    /*
+        1，将浮动元素改为定位
+            1，获取所有li元素
+            2，获取所有li元素位置，并用数组存起来
+            3，把所有li元素设置为定位布局
+            4，将位置赋值给定位后等元素    
+        2, 每个元素进行拖拽
+            1，元素的原始位置
+            2，鼠标点击位置1
+            3，鼠标移动位置2
+            4，元素新位置 = 原始位置 + 位置2 - 位置1
+        3,
+    */ 
+   var listli= document.getElementsByTagName('li');
+   var len = listli.length;
+   var listliPosition = [];
+   var mytable = document.getElementById('mytable'); //mytable的坐标
+   var goalli = '';  //用于存放需要交换的元素
+   var z = 1;
+
+    //1.1, 1.2
+   for(var i=0; i<len; i++){
+        var litop = listli[i].offsetTop;
+        var lileft = listli[i].offsetLeft;
+        listliPosition.push([litop,lileft]);   
+   }
+   console.log(listliPosition);
+
+ //1.3, 1.4
+   for(var i=0; i<len; i++){
+        listli[i].style.position='absolute';
+        listli[i].style.top = listliPosition[i][0] + 'px';
+        listli[i].style.left = listliPosition[i][1] + 'px';
+        listli[i].style.margin = 0;
+   }
+   
+   //2, 每个元素进行拖拽
+   for(var i=0; i<len; i++){
+        listli[i].onmousedown = function(){  //在元素上的鼠标按下时间
+            var self = this;        //this指当前元素
+            var selfT = this.offsetTop;
+            var selfL = this.offsetLeft;
+            console.log('元素的原始坐标：'+ selfL+','+selfT);
+
+            var ev = ev||window.event; //获取window事件
+            var x0 = ev.clientX;  //鼠标按下时的横坐标
+            var y0 = ev.clientY;  //鼠标按下时的纵坐标
+            console.log('鼠标按下时的坐标：'+x0+','+y0);
+
+            document.onmousemove = function(){   //鼠标在屏幕内的移动事件
+                var ev = ev||window.event; //获取window事件
+                var x1 = ev.clientX;  //鼠标移动时的横坐标
+                var y1 = ev.clientY;  //鼠标移动时的纵坐标
+                // console.log('鼠标随时移动坐标：'+ x1+','+y1);
+
+                //将元素位置设为鼠标移动时的位置
+                self.style.left = selfL + x1 - x0 + 'px';
+                self.style.top = selfT + y1 - y0 + 'px';
+                // console.log('元素跟随鼠标移动的坐标：'+self.style.left+','+self.style.top);
+                //选中的元素显示在最上方
+                self.style.zIndex = z;     
+
+                //将鼠标移动时的绝对位置，转化为相对table的位置
+                var xR = x1 - mytable.offsetLeft;
+                var yR = y1 - mytable.offsetTop;
+                // console.log('当前鼠标相对大框坐标：'+xR+','+yR);
+                
+                //检测鼠标是否移动（碰撞）到其他元素内部
+                for(var i=0; i<len; i++){
+                    //清除碰撞时的样式
+                    listli[i].style.transform = '';
+                    listli[i].style.boxShadow = '';
+                    z++;
+
+                    if(xR > listli[i].offsetLeft && xR < listli[i].offsetLeft + 200 && yR > listli[i].offsetTop && yR < listli[i].offsetTop + 120 && listli[i] != self){
+                        //碰撞时的样式
+                        listli[i].style.transform = 'scale(1.05)';
+                        listli[i].style.boxShadow = '0 0 5px #ff9000';
+                        goalli = listli[i];
+                        console.log('碰到的元素坐标：'+goalli.offsetTop+','+goalli.offsetLeft);
+                    }else if(listli[i] == self){
+                        goalli = listli[i];
+                    }
+                    
+                }
+            }
+            window.onmouseup = function(){
+                if(goalli){
+                    self.style.left = goalli.offsetLeft + 'px';
+                    self.style.top = goalli.offsetTop + 'px';
+                    goalli.style.left = selfL + 'px';
+                    goalli.style.top = selfT + 'px';
+                    //目标元素碰撞样式清空
+                    goalli.style.transform = '';
+                    goalli.style.boxShadow = '';
+                    //完成碰撞后，中间健清空
+                    goalli = '';  
+                }
+                //结束鼠标移动事件，否则元素一直跟随鼠标移动
+                document.onmousemove='';
+            }
+            return false;
+            
+        }
+   }
+</script>

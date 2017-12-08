@@ -1,0 +1,262 @@
+<!doctype html>
+<head>
+        <meta charset="UTF-8">
+        <meta name="Author" content="ninachow">
+        <meta name="Keywords" content="ninachow,star">
+        <meta name="Description" content="黑夜，星空，连线">
+        <title>star-line</title>
+</head>
+
+<style>
+
+    /*  1，将5张图片叠加显示在页面
+        2，另外写div，用来显示动画，覆盖上一个图片 div位置
+            1，图片分为左右两个区域，每个区域分5个立方体, 使用左浮动，让左右div俩俩并排
+            2，立方体正面为初始图片，反面为下一张图片
+            3，为立体盒子设置 3D样式 和 景深
+        3，js动画效果
+            1，获取所有图片的地址属性，oshow.urls[]存放
+            2，点击按钮页面背景图片转换
+    */
+        *{ margin:0;padding:0;}
+        body{ 
+            perspective: 1000px;   /* 3D 景深 */
+            text-align: center;
+        }
+
+        #box{
+            position: relative;
+            width:1050px;
+            height:360px;
+            margin: 100px auto 20px;
+        }
+        #box li{
+            display: none;
+            position:absolute;
+            left:0;
+            top:0;
+            list-style: none;
+            width:1050px;
+            height:360px;
+        }
+        #show{
+            display: none;
+            position:absolute;
+            left:0;
+            top:0;
+            width:1050px;
+            height:360px;
+            perspective: 1000px; 
+        }
+        #show div{   /* 图片一般的宽度，图片1/5的高度 */
+            position: relative;
+            float:left;
+            width:525px;
+            height:72px;
+            transform-style: preserve-3d;
+        }
+        
+        #show em{   
+            position:absolute;
+            left:0;
+            width:525px;
+            height:72px;
+        }
+        /* 做立方体的两个侧面 */
+        #show span{
+            position:absolute;
+            left:0;
+            top:0;
+        }
+        #show .span1{
+            width:10px;
+            height:72px;
+        }
+        #show .span2{
+            width:10px;
+            height:72px;
+        }
+        /* 前面 */
+        #show .em1{
+            background-image: url('3D-boat-images/1.png');
+            transform: translateZ(5px);
+        }
+        /* 后面 */
+        #show .em2{
+            background-image: url('3D-boat-images/2.png');
+            transform: translateZ(-5px) rotatex(180deg);
+        }
+
+        @keyframes move1{
+            0%{ /* 动画初始状态 */
+                transform: rotatex(0deg) rotateZ(0deg) rotateY(0deg);
+                animation-timing-function: ease;/*动画速度曲线，以慢速开始*/
+            }
+            60%{ /* 动画状态1 */
+                transform: rotatex(0deg) rotateZ(0deg) rotateY(-60deg);
+                animation-timing-function: ease-in;/*动画速度曲线，以慢速开始*/
+            }
+            80%{ /* 动画状态1 */
+                transform: rotatex(90deg) rotateZ(-10deg) rotateY(-45deg);
+                animation-timing-function: ease-out;/*动画速度曲线，以慢速开始*/
+            }
+            100%{ /* 动画归位 em两个面反转*/
+                transform: rotatex(180deg) rotateZ(0deg) rotateY(0deg);
+               
+            }
+        }
+
+        @keyframes move2{
+            0%{ /* 动画初始状态 */
+                transform: rotatex(0deg) rotateZ(0deg) rotateY(0deg);
+                animation-timing-function: ease;/*动画速度曲线，以慢速开始*/
+            }
+            60%{ /* 动画状态1 */
+                transform: rotatex(0deg) rotateZ(0deg) rotateY(60deg);
+                animation-timing-function: ease-in;/*动画速度曲线，以慢速开始*/
+            }
+            80%{ /* 动画状态1 */
+                transform: rotatex(90deg) rotateZ(-10deg) rotateY(45deg);
+                animation-timing-function: ease-out;/*动画速度曲线，以慢速开始*/
+            }
+            100%{ /* 动画归位 em两个面反转*/
+                transform: rotatex(180deg) rotateZ(0deg) rotateY(0deg);
+               
+            }
+        }
+
+</style>
+<body>
+    <div id="box">
+        <ul>
+            <li><img src="3D-boat-images/1.png"></li>
+            <li><img src="3D-boat-images/2.png"></li>
+            <li><img src="3D-boat-images/3.png"></li>
+            <li><img src="3D-boat-images/4.png"></li>
+            <li><img src="3D-boat-images/5.png"></li>
+        </ul>
+        <!--存储旋转的小木板-->
+         <div id="show"></div>
+    </div>
+    
+
+    <input type="button" id="prev" value="上一张"/>
+    <input type="button" id="next" value="下一张"/>
+ 
+</body>
+<script>
+    //获取显示位置结点
+    var oshow = document.getElementById("show");
+    //获取所有的img图片
+    var aimg = document.getElementsByTagName("img");
+    var ali = document.getElementsByTagName("li");
+    //获取点击按钮
+    var oprev = document.getElementById("prev");
+    var onext = document.getElementById("next");
+
+
+    //生成小木板div，每次生成左右两个div，并设置背景图片显示位置
+    for(var i=0; i<5; i++){
+        var div1 = document.createElement("div");  //左边div
+        var div2 = document.createElement("div");  //右边div
+        div1.innerHTML = "<em class = 'em1' style = 'background-position:0 -"+ i*72 + "px'></em><span class='span1'></span><em class = 'em2' style = 'background-position:0 -"+ i*72 + "px'></em><span span class='span2'></span>";
+        div2.innerHTML = "<em class = 'em1' style = 'background-position:-525px -"+ i*72 + "px'></em><span span class='span1'></span><em class = 'em2' style = 'background-position:-525px -"+ i*72 + "px'></em><span span class='span2'></span>";
+
+        //将新生成的div添加到结点内
+        oshow.appendChild(div1);
+        oshow.appendChild(div2);
+    }
+    //初始显示完整图片
+    ali[0].style.display = "block"; 
+     
+    oshow.urls = []; //存储图片路径
+
+    //获取图片地址
+    for(var i=0,l=aimg.length; i<l; i++ ){
+        oshow.urls.push(aimg[i].getAttribute("src"));
+    }
+   // console.log(oshow.urls);
+
+    //按钮点击事件
+    oshow.inow = 0; //当前图片索引
+    oshow.onOff = false; //
+
+    onext.onclick = function(){
+        if(oshow.onOff){
+            return;
+        }
+        oshow.onOff = true;
+        var inext = oshow.inow + 1;
+        //当图片索引>=图片数量时，inext = 0使循环
+        if(inext >= oshow.urls.length){
+            inext = 0;
+        }
+        //交换方法
+        tab(inext);
+        
+    }
+    oprev.onclick = function(){
+        if(oshow.onOff){
+            return;
+        }
+        oshow.onOff = true;
+        var inext = oshow.inow - 1;
+        //当图片索引<0，inext = 图片数量-1，使循环
+        if(inext < 0){
+            inext = oshow.urls.length - 1;
+        }
+        //交换方法
+        tab(inext);
+    }
+    function tab(inext){
+        var aem1 = oshow.getElementsByClassName("em1");
+        var aem2 = oshow.getElementsByClassName("em2");
+        var adiv = oshow.getElementsByTagName("div");
+
+        //交换前后图片
+        var l = aem1.length;
+        for(var i=0;i<l; i++){
+            aem1[i].style.backgroundImage = "url("+oshow.urls[oshow.inow]+")";
+            aem2[i].style.backgroundImage = "url("+oshow.urls[inext]+")";
+            //console.log(aem1[0].style.backgroundImage+aem2[0].style.backgroundImage );
+        }
+
+        //点击事件开始时，显示动画盒子，隐藏当前正面图片
+        oshow.style.display = "block";
+        ali[oshow.inow].style.display = "none";
+
+        //添加动画，延时添加动画
+        for(var i=0,l=adiv.length; i<l; i+=2){
+            var time = (i+1)*50
+            adiv[i].style.transform = "rotateX(0deg)";
+            adiv[i+1].style.transform = "rotateX(0deg)";
+            //调用延时方法
+             setTimer(adiv[i],time,"move1");
+             setTimer(adiv[i+1],time,"move2");
+        }
+        //动画执行完成，显示下一张图片，隐藏动画盒子
+        setTimeout(function() {
+            oshow.inow = inext;
+            oshow.style.display = "none";
+            ali[inext].style.display = "block"; 
+
+            oshow.onOff = false; 
+        }, adiv.length*50+1500);
+        
+    }
+    //obj 需要添加动画的对象，time延时的时间，name动画名称
+    function setTimer(obj,time,name){
+        obj.timer = setTimeout(function(){
+            //先清除定时器，再添加定时器
+            clearTimeout(obj.timer);
+            obj.style.animation = name + " 1.5s";
+            obj.style.transform = "rotateX(180deg)";
+            //1.5秒后清除动画
+            obj.timer = setTimeout(function() {
+                obj.style.animation = "";
+                clearTimeout(obj.timer);
+            }, 1500);
+        },time)
+    }
+
+</script>

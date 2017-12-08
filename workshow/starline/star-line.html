@@ -1,0 +1,112 @@
+<!doctype html>
+<head>
+        <meta charset="UTF-8">
+        <meta name="Author" content="ninachow">
+        <meta name="Keywords" content="ninachow,star">
+        <meta name="Description" content="黑夜，星空，连线">
+        <title>star-line</title>
+</head>
+<style>
+        *{
+                margin:0;
+                padding:0;
+        }
+        body{
+                overflow:hidden;
+        }
+        #canvas{
+                background-color:#050325;
+        }
+</style>
+<body>
+        <canvas id='canvas' width="190" height="150" ></canvas>
+        <script>
+                var Canvas = {};
+                Canvas.star = {
+                         init:function(){
+                                  //获取页面元素，创建context对象（画笔），初始化画布大小
+                                var canvas = document.getElementById('canvas');
+                                this.ctx = canvas.getContext('2d');  
+                                canvas.width = window.innerWidth;
+                                canvas.height = window.innerHeight;
+                                this.cw = canvas.width;
+                                this.ch = canvas.height;
+                                this.num = 400;    //星星总数量
+                                this.data = [];
+   
+                                for(var i=0; i<this.num; i++){
+                                        this.data[i] = {
+                                                x : Math.random() * this.cw,  //在屏幕内随机星星坐标
+                                                y : Math.random() * this.ch,
+                                                mw : Math.random() * 1 - 0.4,   //随机每个星星的xy平移距离
+                                                mh : Math.random() * 1 - 0.4,   //减去一个数值使差值有正有负，运动方向不同
+                                        }
+                                        
+                                        this.drowstar(this.data[i].x,this.data[i].y);
+                                        
+                                }
+                        },
+                
+                        //画单个星星✨
+                        drowstar:function(x,y){
+                                var ctx = this.ctx;
+                                ctx.save();
+                                ctx.fillStyle="red";
+                                ctx.beginPath();
+                                ctx.strokeStyle = 'yellow';
+                                ctx.arc(x,y,0.5,0,2*Math.PI);
+                                ctx.fill();
+                                ctx.closePath();
+                                ctx.stroke();
+                                ctx.restore();
+                        },
+
+                        drowline:function(x1,y1,x2,y2){
+                                var ctx = this.ctx;
+                                var color = ctx.createLinearGradient(x1,y1,x2,y2);
+                                color.addColorStop(0,'blue');
+                                color.addColorStop(1,'red');
+                                ctx.save();
+                                ctx.strokeStyle = color;
+                                ctx.beginPath();
+                                ctx.moveTo(x1,y1);
+                                ctx.lineTo(x2,y2);
+                                ctx.stroke();
+                        },
+
+                        movestar:function(){
+                                var ctx = this.ctx;
+                                ctx.clearRect(0,0,this.cw,this.ch);    //清除矩形区域（屏幕）内的点
+                                for(var i=0; i<this.num; i++){
+                                        this.data[i].x+=this.data[i].mw;
+                                        this.data[i].y+=this.data[i].mh;
+
+                                        //触碰到浏览器边框时，修改变化值
+                                        if(this.data[i].x > this.cw || this.data[i].x < 0){
+                                                this.data[i].mw = -this.data[i].mw;
+                                        }
+                                        if(this.data[i].y > this.ch || this.data[i].y < 0){
+                                                this.data[i].mh = -this.data[i].mh;
+                                        }
+                                        //画新的点
+                                        this.drowstar(this.data[i].x,this.data[i].y);  
+
+                                        //勾股定理连线
+                                        for(var j=i+1; j<this.num; j++){
+                                                if((this.data[i].x - this.data[j].x) * (this.data[i].x - this.data[j].x) + (this.data[i].y - this.data[j].y) * (this.data[i].y - this.data[j].y) < 50*50){
+                                                      this.drowline(this.data[i].x,this.data[i].y,this.data[j].x,this.data[j].y);  
+                                                }
+                                        }
+                                }
+                        },
+
+                        
+                }
+                Canvas.star.init();
+                Canvas.star.movestar();
+                setInterval(function(){
+                       Canvas.star.movestar();       
+                },1000/60);
+                // Canvas.star.drowstar();
+        </script>
+</body>

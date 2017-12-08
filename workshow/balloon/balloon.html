@@ -1,0 +1,123 @@
+<!doctype html>
+<head>
+    <title>balloon boom</title>
+</head>
+
+<style>
+body{
+    overflow: hidden; /*屏幕去掉滑动条 */  
+    width: 2000px;
+    height: 2000px;
+    background: linear-gradient(#1d7e6e, blue);
+    margin: 0;
+}
+.balloon{
+    position: absolute;
+    width:168px;
+    height: 168px;
+    background-color: #ffc0cb;
+    border-radius: 168px 168px 70px 168px;
+    transform: rotate(45deg);
+    box-shadow: -1px -7px 17px 14px #f09dad inset;
+}
+.balloon::after{
+    position: absolute;
+    content: "";
+    bottom:0;
+    right:0;
+    border: 8px solid transparent;   /*透明边框*/
+    border-right:8px solid #d66234;
+    border-radius: 6px;
+    transform: rotate(45deg);
+}
+ /* .balloon::before{
+    position: absolute;
+    content: "";
+     width:15px; 
+    bottom:10px;
+    right:0px;
+    border: 1px solid #ffffff;
+    border-radius: 26px;
+    box-shadow: -4px -6px 12px 11px #fff;
+    transform: rotate(90deg);
+}  */
+</style>
+<body>
+    <!-- <div class='balloon'></div> -->
+</body>
+<script>
+    var sW = window.innerWidth;
+    var sH = window.innerHeight;
+    var bH = 160;
+    var bW = 160;
+    var timer;
+    var balloons = [];
+    init(10);
+    var time = setInterval(mov,1000/60);  // 浏览器帧速率，同步堵塞，失真,调用主体是window
+   //循环 比 递归 速度快10倍，但是递归优先保证代码正常运行（比如：瀑布流）
+
+   //添加一个点击事件监听，缺点：匿名事件解绑麻烦
+
+
+    function init(num){
+        var fragment = document.createDocumentFragment(); //最小Dom单元
+        for(var i=0; i<num; i++){
+            var rad = ~~(Math.random()*sW) - bW;     //~~ ||0 >> >>> 位运算取整数，比Math算法效率高
+            rad = Math.abs(rad);     //取绝对值，左边宽度不会为负，超出左屏幕
+            var balloon = document.createElement('div');  //创建标签
+            balloon.className = 'balloon';                //添加类名
+            balloon.style.top = sH+'px';        //气球移动到屏幕最下方
+            balloon.style.left = rad +'px';     //气球不会超出屏幕宽带
+            balloon.speed = ~~(Math.random()*10)+1;     //自定义元素属性
+          //  document.body.appendChild(balloon);           //浏览器重绘，耗资源，不在循环中使用
+          fragment.appendChild(balloon);   
+          balloons.push(balloon);     //同下面获取节点方法querySelectorAll实现功能相同，但是不耗内存
+        }
+        document.body.appendChild(fragment);     //只会绘制一次
+    }
+
+    function mov(){
+     //   var balloons = document.querySelectorAll('.balloon');  //获取所有类名为ballon的节点 兼容IE8+
+        //循环所有的气球节点，优化写法for循环
+        for(var i=0, len=balloons.length; i<len; i++){
+            balloons[i].style.top = balloons[i].offsetTop - balloons[i].speed + 'px';   //offsetTop 返回当前元素的高
+            if(balloons[i].offsetTop < -bH){
+                balloons[i].style.top = sH +'px';
+            }
+        }
+    }
+
+    document.addEventListener('click',function(event){
+       if(event.target.className.toLowerCase() === 'balloon'){   //判断事件点击是否是balloon
+            var ele = event.target;    
+            // document.body.removeChild(ele);   //直接移除节点对象 
+console.log(event);
+            boom.call(ele); //call作用是 用ele替代boom中的this
+            //生成一个气球
+            init(1); 
+       }
+   },false) 
+
+    function boom(){
+        var rotate = [30,80];
+        var index = 0;
+
+        this.timer = setInterval(function(){
+            if(this.offsetWidth < 10){
+                clearInterval(this.timer);
+                this.parentNode.removeChild(this);
+                return false;
+            }
+            index++;
+            index %= 2;
+            this.style.transform = 'rotate('+rotate[index]+'deg)'; //左右摇摆
+            this.speed ++;
+            this.style.width = this.offsetWidth - 20 +'px';
+            this.style.height = this.offsetHeight - 20+'px';
+            this.style.top = this.offsetTop - this.speed + 'px';
+            
+        }.bind(this),1000/30)
+    }
+    
+
+</script>

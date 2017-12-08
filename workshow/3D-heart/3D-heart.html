@@ -1,0 +1,117 @@
+<!doctype html>
+<head>
+    <title>balloon boom</title>
+</head>
+
+<style>
+    /* 绘制3D图形时，
+        1、必须在父元素块增加3D景深(800-1000)，如果添加在自身元素中立体效果变形。
+        2、在自身元素中，设置为3D环境。
+    */
+    *{margin: 0; padding: 0;}
+
+body{
+     background-color: #000;
+     overflow:hidden;
+     perspective: 1000px;   /* 3D 景深 */
+}
+
+#heart{
+    position: relative;
+    width:300px;
+    height: 300px;
+    margin: 200px auto;
+    animation: mov 10s linear infinite;
+    transform-style: preserve-3d;   /* 设置3D环境 */
+}
+
+@keyframes mov{
+    from {transform: rotateY(0) rotatez(0);}
+    to {transform: rotateY(360deg) rotatez(360deg);}
+}
+    
+.heart{
+    position: absolute;
+    top:-175px;
+    left:0;
+    width:200px;
+    height: 300px;
+    border: 1px solid pink;
+    margin: 200px auto;
+    border-left:0;   /* 去掉左边框 */
+    border-bottom:0;
+    border-radius:50% 50% 0/40% 50% 0; /* X方向的4个弧度／Y方向的4个弧度 */
+}
+
+#cube{
+    position: absolute;
+    top:0;
+    left:0;
+    width:100px;
+    height: 100px;
+    transform: translateX(50px) translateY(103px) translateZ(50px);
+    transform-style: preserve-3d;    /* 设置3D环境 */
+}
+#cube div{
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    border: 2px solid #fff;
+    color: #fff;
+}
+#cube div:nth-child(1){
+    top:-102px;
+    transform-origin: bottom;   /* 设置旋转轴 */
+    transform: rotatex(90deg);   /* 设置选择方向 x */
+}
+#cube div:nth-child(2){
+    top:102px;
+    transform-origin: top;
+    transform: rotatex(-90deg);
+}
+#cube div:nth-child(3){
+    left:-102px;
+    transform-origin: right;
+    transform: rotatey(-90deg);
+}
+#cube div:nth-child(4){
+    left:102px;
+    transform-origin: left;
+    transform: rotatey(90deg);
+}
+#cube div:nth-child(6){
+    transform: translateZ(-102px);   /*  正后方平移  */
+}
+img{
+    width:100px;
+    height:100px;
+}
+
+</style>
+<body>
+    <div id='heart'>
+        <div id='cube'>
+            <div><img src='./3D-heart-img/01.JPG' width='2448' height='3264' alt='bear'></div>
+            <div><img src='./3D-heart-img/02.JPG' width='852' height='1136' alt='nina'></div>
+            <div><img src='./3D-heart-img/03.JPG' width='800' height='1066' alt='nina'></div>
+            <div><img src='./3D-heart-img/04.JPG' width='480' height='640' alt='nina'></div>
+            <div><img src='./3D-heart-img/05.JPG' width='2448' height='3264' alt='ken'></div>
+            <div><img src='./3D-heart-img/06.JPG' width='2448' height='3264' alt='nina'></div> 
+        </div>
+    </div>
+    
+</body>
+<script>
+    var heart = document.getElementById('heart');
+
+    for(var i=0; i<36; i++){
+        var oDiv = document.createElement('div');
+        oDiv.className='heart';
+        heart.appendChild(oDiv);
+        oDiv.style.transform='rotatey('+i*10+'deg) rotatez(45deg) translatex(50px)';
+    }
+
+
+   
+
+</script>

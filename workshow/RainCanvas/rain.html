@@ -1,0 +1,152 @@
+<!doctype html>
+<head>
+        <meta charset="UTF-8">
+        <meta name="Author" content="ninachow">
+        <meta name="Keywords" content="ninachow,rain">
+        <meta name="Description" content="下雨啦">
+        <title>rain</title>
+</head>
+<style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        body{
+             overflow:hidden; 
+        }
+        #canvas{
+            display: block;
+            background-color:#050325;
+        }
+</style>
+<body>
+    <canvas id="canvas">您的浏览器不支持绘图标签</canvas>
+
+    <script type="text/javascript">
+        var can = document.getElementById("canvas");
+        var ctx = can.getContext("2d"); //设置绘图环境
+
+        //c初始化画布大小
+        var w = can.width = window.innerWidth,
+            h = can.height = window.innerHeight;
+
+        //监听浏览器窗口变化，并设置新的画布大小
+        window.onresize = function(){
+            var w = can.width = window.innerWidth,
+            h = can.height = window.innerHeight;
+            console.log(can.width , can.height);
+        }
+
+        // //绘制矩形:xy 起点，wh宽高
+        // ctx.fillStyle = "red";
+        // ctx.fillRect(100,100,50,50); 
+        // //画园:xy圆心坐标，r半径 ，0-2*Math.P画圆度数，顺时针
+        // ctx.arc(250,250,50,0,2*Math.PI,false);
+        // ctx.fill();//填充圆颜色
+
+        // var y = 0;
+        // setInterval(function(){
+        //     y++;
+        //     //绘制透明层
+        //     ctx.fillStyle = "rgba(0,0,0,0.05)";
+        //     ctx.fillRect(0,0,w,h);
+        //     //绘制雨滴矩形
+        //     ctx.fillStyle = "#3ff";
+        //     ctx.fillRect(50,y,2,10); 
+        // },1000/60)   //浏览器更新速度1秒60次
+
+        //创建雨滴类
+        function Drop(){};
+           //给雨滴添加原型
+        Drop.prototype = {
+        //初始化雨滴属性
+            init:function(){
+                //设置雨滴的坐标位置
+                this.x = random(0,w);  //屏幕X轴方向上任意一点
+                this.y = 0;
+                this.vy = random(4,5); //随机下落速度
+                this.l = random(0.8*h,0.9*h);//雨滴下方消失区域高度
+                this.r = 1; //圆形半径初始值
+                this.vr = 1;//圆形半径增大速度/雨滴下落加速度
+                this.a = 1; //透明度初始值
+                this.va = 0.96; //透明度的变化系数
+            },
+            //绘制雨滴的方法
+            draw:function(){
+                if(this.y > this.l){
+                    //绘制圆形
+                    ctx.strokeStyle = "rgba(0,255,255,"+this.a+")";
+                    ctx.beginPath(); //重新开始路径
+                    ctx.arc(this.x,this.y,this.r,0,2*Math.PI,false);
+                    ctx.stroke();//绘制圆线条
+                   
+                }else{
+                    //绘制矩形
+                    ctx.fillStyle = "#3ff";
+                    ctx.fillRect(this.x,this.y,2,10); 
+                }
+                //绘制完成后更新坐标
+                this.update();
+            },
+            //更新坐标方法
+            update:function(){
+                if(this.y < this.l){
+                    //改变雨滴运动
+                    this.y += this.vy;
+                }else{
+                    //改变圆形半径
+                    if(this.a > 0.07){
+                        this.r += this.vr; 
+                        if(this.r > 50){
+                            //逐渐变模糊
+                            this.a *= this.va;
+                        }
+                    }else{
+                        //重新初始化雨滴
+                        this.init();
+                    }
+                    
+                }
+                
+            }
+        }
+        //实例化雨滴对象
+        // var drop = new Drop();
+        // drop.init();
+        // drop.draw();
+        // setInterval(function(){
+        //     //绘制透明层
+        //     ctx.fillStyle = "rgba(0,0,0,0.05)";
+        //     ctx.fillRect(0,0,w,h);
+        //     drop.draw();
+        // },1000/60)
+
+        var drops = [];//数组存放所有雨滴
+
+        for(var i = 0; i<30; i++){
+            //每个雨滴延时添加
+            setTimeout(function(){
+                var drop = new Drop();
+                drop.init(); //初始化雨滴属性
+                drops.push(drop);
+            },500*i) 
+        }
+
+        setInterval(function(){
+            //绘制透明层
+            ctx.fillStyle = "rgba(0,0,0,0.05)";
+            ctx.fillRect(0,0,w,h);
+
+            for(var i=0; i<drops.length; i++){
+            drops[i].draw();
+        }
+        },1000/60)
+        
+
+        //min~max之间的随机数
+        function random(min,max){
+            return Math.random()*(max-min) + min; 
+         }
+        
+    </script>
+</body>
