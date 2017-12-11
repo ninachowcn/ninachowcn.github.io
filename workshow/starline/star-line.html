@@ -22,8 +22,9 @@
         <canvas id='canvas' width="190" height="150" ></canvas>
         <script>
                 var Canvas = {};
+                
                 Canvas.star = {
-                         init:function(){
+                        init:function(){
                                   //获取页面元素，创建context对象（画笔），初始化画布大小
                                 var canvas = document.getElementById('canvas');
                                 this.ctx = canvas.getContext('2d');  
@@ -100,6 +101,7 @@
                                 }
                         },
 
+
                         
                 }
                 Canvas.star.init();
@@ -108,5 +110,11 @@
                        Canvas.star.movestar();       
                 },1000/60);
                 // Canvas.star.drowstar();
+                document.onmousemove= function(event){
+                        var mx = event.clientX;
+                        var my = event.clientY;
+                        console.log("X coords: " + mx + ", Y coords: " + my);
+                        
+                }
         </script>
 </body>
