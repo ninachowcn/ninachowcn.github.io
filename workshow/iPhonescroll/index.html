@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>iphone 下拉菜单滚动</title>
+</head>
+<style>
+    body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td,hr,button,article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{margin:0;padding:0}
+    article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section { display:block; }
+    table{border-collapse:collapse;border-spacing:0}
+    audio,canvas,video { display: inline-block;*display: inline;*zoom: 1;}
+    fieldset,img{border:0}
+    address,caption,cite,code,dfn,em,strong,th,var{font-style:normal;font-weight:normal}
+    ol,ul{list-style:none}
+    caption,th{text-align:left}
+    h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal}
+    q:before,q:after{content:''}
+    abbr,acronym{border:0;font-variant:normal}
+    sup{vertical-align:text-top}
+    sub{vertical-align:text-bottom}
+    input,textarea,select{font-family:inherit;font-size:inherit;font-weight:inherit}
+    input,textarea,select{*font-size:100%}
+
+    *::-webkit-scrollbar{
+        padding-left: 100px;    /* 隐藏侧边滚动条  */
+    }
+    .iphone{
+        position: relative;
+        width:600px;
+        height:300px;
+        background: #f0f0f0;
+        margin: 100px auto;
+        border:10px solid #000;
+        border-radius: 30px;
+    }
+    .content{
+        width: 100%;
+        height:100%;
+        overflow-x: hidden;
+        overflow-y: scroll;    /* 下方设为滚动模式 */
+    }
+    .camera{
+        position: absolute;
+        top:20%;
+        width:6%;
+        height:60%;
+        background: #000;
+        border-radius:0 30px 30px 0;
+    }
+    ul{
+        padding-left: 10px;
+    }
+    li{
+        font-size: 16px;
+        font-weight: bold;
+        padding: 5px;
+        border-bottom: 1px solid #ccc;
+    }
+</style>
+<body>
+    <div class="iphone">
+        <div class="content">
+            <ul>
+                <li>SweeTango SweeTango SweeTango SweeTango</li>
+                <li>Pacific Rose Pacific Rose Pacific Rose Pacific Rose</li>
+                <li>SnapDragon SnapDragon SnapDragon SnapDragon</li>
+                <li>Envy Envy Envy Envy Envy Envy Envy</li>
+                <li>Koru Plumac Koru Plumac Koru Plumac</li>
+                <li>Pink Lady Pink Lady Pink Lady Pink Lady Pink Lady</li>
+                <li>Honeycrisp Honeycrisp Honeycrisp Honeycrisp</li>
+                <li>javascript javascript javascript javascript</li>
+                <li>MIME MIME MIME MIME MIME MIME MIME </li>
+                <li>SweeTango SweeTango SweeTango SweeTango</li>
+                <li>Pacific Rose Pacific Rose Pacific Rose Pacific Rose</li>
+                <li>SnapDragon SnapDragon SnapDragon SnapDragon</li>
+                <li>Envy Envy Envy Envy Envy Envy Envy</li>
+                <li>Koru Plumac Koru Plumac Koru Plumac</li>
+                <li>Pink Lady Pink Lady Pink Lady Pink Lady Pink Lady</li>
+                <li>Honeycrisp Honeycrisp Honeycrisp Honeycrisp</li>
+                <li>javascript javascript javascript javascript</li>
+                <li>MIME MIME MIME MIME MIME MIME MIME </li>
+            </ul>
+        </div>
+        <div class="camera"></div>
+    </div>
+
+    <script>
+        /*
+           -----------
+           |
+           |    ======  
+           |--           li底部 - camera头部 距离（|-10px ~ 10px |）< -10px 时开始发生偏移
+           |  | ======  
+           |  |    
+           |  | ======  li底部 - camera头部 > 0 && 距离 >0 && li头部 - camera底部距离（|-10px ~ 10px |）大于 10px
+           |  |         && li头部 - camera底部距离 < 0
+           |  | ======
+           |--          li头部 - camera底部距离（|-10px ~ 10px |）< 10px 时开始发生偏移
+           |    ======
+           |            li头部 - camera底部距离 > 10px 还原到原位移位置0
+           ---------
+        
+        */
+
+        var lioffset = 30,     //最终偏移量30px
+            thresh = 10,       //坡度(高度)10px
+            aList = document.getElementsByTagName("li"),   //获取所有li
+            cameraRect = document.querySelector(".camera").getBoundingClientRect(),   //获取摄像头位置
+            content = document.querySelector(".content");  //获取屏幕
+
+            ~~function(){
+                //函数这样写，能够在页面加载后就执行，不用等到滚动事件在执行
+                content.onscroll = arguments.callee;
+                //获取aList中的每个li元素
+                for(var i of aList){
+                    var liRect = i.getBoundingClientRect();  //获取每个li元素的位置
+                    var distFromTop = liRect.bottom - cameraRect.top;
+                    var distFromBottom = liRect.top - cameraRect.bottom;
+
+                    if(Math.abs(distFromTop) < thresh){
+                        var move = cal(distFromTop,thresh);
+                        var newSet = lerp(0,lioffset,move);
+                        i.style.transform = "translateX("+ newSet +"px)";                        
+                    }
+                    else if(distFromTop > 0 && Math.abs(distFromTop) > thresh && Math.abs(distFromBottom) > thresh && distFromBottom <0){
+                        i.style.transform = "translateX("+ lioffset +"px)"; 
+                    }
+                    else if(Math.abs(distFromBottom) < thresh ){
+                        var move = cal(distFromBottom,thresh);
+                        var newSet = lerp(lioffset,0,move);
+                        i.style.transform = "translateX("+ newSet +"px)";
+                    }
+                    else{
+                        i.style.transform = "translateX(0px)"; 
+                    }
+                }
+
+            }();
+            /*
+            *  差值算法，用于帧动画，游戏等
+            * @p0  一个物体的初始位置 number
+            * @p1  一个物体的最终位置 number
+            * @t   p0 到 p1 的过度方法
+            */ 
+            function lerp(p0,p1,t){
+                return (p1 - p0) * t + p0;  //(100 - 0)*t + 0
+            }
+            /*
+            *  p0 到 p1 的过度方法
+            * @dis     物体A与物体B的实时距离 number 一开始为负，后来为正 (-10 ~ 10)
+            * @thresh  位置区间 number (10)
+            */ 
+            function cal(dis,thresh){
+                return (dis + thresh)/(thresh * 2);   //0/20 ~ 20/20  返回百分比
+            }
+
+            // console.log(cameraRect);
+    </script>
+</body>
+</html>
