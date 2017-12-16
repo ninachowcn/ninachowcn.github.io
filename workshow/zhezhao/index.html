@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="Keywords" content="ninachow,blog">
+    <meta name="Description" content="ninachow 的博客首页，对前端开发都一些总结文章和作品">
+    <title>透视遮罩效果</title>
+</head>
+
+<style>
+    html,body{width:100%;height:100%;}
+    body{margin: 0;padding: 0;overflow: hidden;}
+    #wrap{
+        position: relative;
+        width:100%;
+        height:100%;
+        background: #387;
+    }
+    .firstlay{
+        position: relative;
+        top:0;
+        width:100%;
+        height:100%;
+    }
+    .secdlay{
+        position: absolute;
+        top:0;
+        width:657px;
+        height:100%;
+        overflow:hidden;
+        background: #573434;
+    }
+    .firstlay img,.secdlay img{
+        position: absolute;
+        top:0;
+        left:400px;
+    }
+    .arrow{
+        position: absolute;
+        top:0;
+        bottom:0;
+        margin: auto;  
+        left:637px; 
+        width:40px;
+        height:40px;
+    }
+</style>
+<body>
+    <div id="wrap">
+        <div class="firstlay">
+            <img src="images/1.png" width="500" height="700" alt="firstimg">      
+        </div>
+        <div class="secdlay">
+            <img src="images/2.png" width="500" height="700" alt="firstimg"> 
+        </div>
+        <div class="arrow">
+            <img src="images/3.png" width="40" height="40" alt="">
+        </div>
+    </div>
+    <script>
+        var oArrow = document.querySelector(".arrow");
+        var oSecdlay = document.querySelector(".secdlay");
+        oArrow.onmousedown = function(){
+            document.body.onmousemove = function(e){
+                e.preventDefault(); //阻止默认事件（图片选中虚影）
+                // console.log(e.pageX);    //鼠标在文档流中移动时的X坐标
+                oArrow.style.left = e.pageX - 20 + "px";
+                oSecdlay.style.width = e.pageX + "px";
+            }
+            document.body.onmouseup = function(){
+                document.body.onmousemove = null;
+            }
+        }
+    </script>
+</body>
+</html>
