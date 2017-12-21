@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>音乐播放器</title>
+</head>
+<style>
+    html,body{width:100%;height:100%;}
+    body{margin: 0;padding: 0;overflow: hidden;background: #3c5277}
+    .photo{
+        width:320px;
+        height: 600px;
+        margin: 100px auto;
+        background: #000;
+        background-color: #222;
+        padding: 5px;
+        border-radius: 20px;
+        box-shadow: 0 0 7px #fff;
+        overflow: hidden;
+    }
+    .photo .top{
+        width:320px;
+        height: 23px;
+        background:url("images/1.png") center no-repeat
+    }
+    .photo .title{
+        width:320px;
+        height: 30px;
+        color: #ccc;
+        line-height: 30px;
+        font-size: 20px;
+        text-align: center;
+        background:url("images/2.png") center no-repeat
+    }
+    .photo .singer{
+        width:320px;
+        color: #ccc;
+        line-height: 40px;
+        font-size: 14px;
+        text-align: center;
+    }
+    .photo .lrc{
+        width: 300px;
+        height: 285px;
+        margin: 20px auto;
+        text-align: center;
+        color: #ccc;
+        overflow: hidden;
+    }
+    .photo .lrc p{
+        line-height: 20px;
+        font-size: 12px;
+    }
+    .photo .lrc .content{
+        position: relative;
+        top:0;
+        left:0;
+    }
+    .photo .play{
+        width: 190px;
+        height: 190px;
+        background: url("images/3.png") no-repeat;
+        margin: auto;
+        border-radius: 50%;
+    }
+    .photo .rotate{
+        -webkit-animation: rot 5s linear infinite;
+        -moz-animation: rot 5s linear infinite;
+        -ms-zoom-animation: rot 5s linear infinite;;
+        -o-animation: rot 5s linear infinite;;
+        animation: rot 5s linear infinite;
+    }
+    @keyframes rot{
+        from{transform: rotate(0deg);}
+        to{transform: rotate(360deg);}
+    }
+
+
+</style>
+<body>
+    <textarea id="txt" style="display:none;">
+        [00:0.05]小幸运 -田馥甄
+        [00:6.05]作词：徐世珍&吴辉福
+        [00:9.05]作曲：JerryC
+        [00:13.05]我听见雨滴落在青青草地
+        [00:19.00]我听见远方下课钟声响起
+        [00:25.06]可是我没有听见你的声音
+        [00:30.41]认真呼唤我姓名
+        [00:37.22]爱上你的时候还不懂感情
+        [00:43.32]离别了才觉得刻骨铭心
+        [00:49.35]为什么没有发现遇见了你
+        [00:53.94]是生命最好的事情
+        [00:59.59]也许当时忙着微笑和哭泣
+        [01:05.81]忙着追逐天空中的流星
+        [01:11.56]人理所当然的忘记
+        [01:15.84]是谁风里雨里一直默默守护在原地
+        [01:23.20]原来你是我最想留住的幸运
+        [01:28.67]原来我们和爱情曾经靠得那么近
+        [01:34.84]那为我对抗世界的决定
+        [01:39.79]那陪我淋的雨
+        [01:42.47]一幕幕都是你
+        [01:45.63]一尘不染的真心
+        [01:49.53]与你相遇好幸运
+        [01:52.94]可我已失去为你泪流满面的权利
+        [01:59.21]但愿在我看不到的天际
+        [02:03.59]你张开了双翼
+        [02:06.85]遇见你的注定
+        [02:11.40]她会有多幸运
+        [02:26.47]青春是段跌跌撞撞的旅行
+        [02:32.53]拥有着后知后觉的美丽
+        [02:38.61]来不及感谢是你给我勇气
+        [02:42.75]让我能做回我自己
+        [02:48.93]也许当时忙着微笑和哭泣
+        [02:54.98]忙着追逐天空中的流星
+        [03:01.77]人理所当然的忘记
+        [03:05.30]是谁风里雨里一直默默守护在原地
+        [03:13.16]原来你是我最想留住的幸运
+        [03:18.34]原来我们和爱情曾经靠得那么近
+        [03:24.22]那为我对抗世界的决定
+        [03:28.39]那陪我淋的雨
+        [03:31.94]一幕幕都是你
+        [03:34.89]一尘不染的真心
+        [03:38.97]与你相遇好幸运
+        [03:42.34]可我已失去为你泪流满面的权利
+        [03:48.54]但愿在我看不到的天际
+        [03:53.42]你张开了双翼
+        [03:56.23]遇见你的注定
+        [03:59.79]oh
+        [04:04.00]她会有多幸运
+    </textarea>
+    <div class="photo">
+        <div class="top"></div>
+        <div class="title">小幸运</div>
+        <div class="singer">谭嘉仪</div>
+        <div class="play"></div>
+        <div class="lrc">
+            <div class="content"></div>
+        </div>
+        <audio src="mp3/谭嘉仪-小幸运.mp3" id="myMusic"></audio>
+    </div>
+
+    <script>
+        var oPlay = document.querySelector(".play"),
+            oMusic = document.getElementById("myMusic"),
+            onOff = true,    //播放器开关
+            num = 0 ;       //歌词滚动下标
+
+        oPlay.onclick = function(){
+            if(onOff){
+                oPlay.className += " rotate";
+                oMusic.play();
+            }else{
+                oPlay.className = "play";
+                oMusic.pause();
+            }
+            onOff = !onOff;
+        }
+
+        var oTxt = document.getElementById("txt"),
+            oCon = document.querySelector(".content"),
+            mlrc = oTxt.value,
+            lrcList = mlrc.split("[");
+
+        lrcList.forEach(function(el,index,self){
+            var singler = el.split("]")[1], //单句歌词
+                time = el.split("]")[0],   //单句以分钟为单位时间
+                stime = time.split(":")[0]*60 + parseInt(time.split(":")[1]); //以秒为单位都整数时间
+            
+            if(singler){
+                var p = document.createElement("p");
+                p.className = "time-"+stime;
+                p.innerHTML = singler;
+                oCon.appendChild(p);
+            }
+        });
+
+
+        //多媒体元素监听当前时间事件 
+        oMusic.addEventListener("timeupdate",function(){
+            var curtime =parseInt(this.currentTime) ,  //当前时间整数秒
+                aP = document.getElementsByTagName("p");
+                
+            if(document.getElementsByClassName("time-"+curtime).length){
+                //将所有歌词还原样式，for循环
+                // for(var i=0,j=aP.length; i<j; i++){
+                //     aP[i].style.cssText = "color:#fff;font-size:12px;";
+                // }
+
+                //将所有歌词还原样式，forEach 方法
+                Array.prototype.forEach.call(aP,function(el){
+                    el.style.cssText = "color:#fff;font-size:12px;";
+                })
+                //当前歌词加粗加红
+                document.getElementsByClassName("time-"+curtime)[0].style.cssText = "color:red;font-size:18px;";
+                
+            }
+            
+            if(aP[6+num].className.split("-")[1] == 244){
+                oCon.style.top = -32*num + "px"; 
+            }else
+            if(aP[6+num].className.split("-")[1] < curtime){
+                oCon.style.top = -32*num + "px";   
+                num ++; 
+            }
+            // console.log(curtime, this.currentTime);//244.191726
+            
+            //  console.log(oMusic.ended);
+            if(oMusic.ended){
+                oMusic.pause();
+                oCon.style.top = "0px";
+                oPlay.className = "play";
+                num=0;
+                console.log(this.currentTime)
+            }
+        })
+    </script>
+</body>
+</html>
