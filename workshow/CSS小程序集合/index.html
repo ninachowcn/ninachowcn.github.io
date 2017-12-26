@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="Author" content="ninachow">
+    <meta name="Keywords" content="ninachow,shenzhen">
+    <meta name="Description" content="">
+    <title>HTML+CSS 小程序集合</title>
+</head>
+<style>
+    *{margin: 0;padding: 0;}
+    ul,ol{list-style: none;}
+
+    #bird{
+        float: left;
+        width:400px;
+        background-color: #262936;
+        border-radius: 10px;
+        padding:75px 0;
+        margin-left:10px;
+    }
+    #bird p{
+        position: relative;
+        top:-60px;
+        left: 20px;
+        color: #e4dede;
+    }
+    p span{
+        font-size: 14px;
+    }
+    #bird .box{
+        position: relative;
+        width:250px;
+        height: 250px;
+        margin: 0 auto;
+        border: 5px solid #999;
+        transform: rotate(-45deg);
+    }
+    #bird .box::before,#bird .box::after,#bird .box .smalcir{      
+        position: absolute;
+        width:0;height: 0;
+        left: 0;top:0;
+        right: 0;bottom: 0;
+        margin:auto;
+        border-style: solid;
+        border-radius: 50%;
+        transition: .5s;
+    }
+    #bird .box::before{
+        content: "";
+        border-width: 100px;       
+        border-color: #ff0000 transparent transparent #ff0000;   
+    }
+    #bird .box::after{
+        content: "";
+        border-width: 75px; 
+        border-color: #fff #fdcd3d transparent #ddd;
+    }
+    #bird .box .smalcir{
+        border-width: 50px;
+        z-index: 3;
+        border-color: transparent transparent #ffa600 transparent;  
+        transition: .58s;      
+    }
+    #bird .box .smalcir::after{
+        content: "";
+        position: absolute;
+        top:-53px;
+        left:-15px;
+        width: 30px;
+        height: 30px;
+        background-color: #000;
+        border-radius: 50%;
+    }
+    #bird .box:hover::before{  
+        border-color:  #0fac97 transparent transparent #0fac97; 
+        transform: rotate(180deg);
+    }
+    #bird .box:hover::after{  
+        border-color:  #fff #ddd transparent #fdcd3d; 
+        transform: rotate(90deg);
+    }
+    #bird .box:hover .smalcir{  
+        transform: rotate(90deg);
+    }
+
+    #circover{
+        float: left;
+        width:810px;
+        background-color: #262936;
+        border-radius: 10px;
+        padding:16px 0;
+        margin-left:10px;
+    }
+    #circover p{
+        padding-left: 20px;
+        color: #e4dede;
+    }
+    #circover .box{
+        width: 410px;
+        height: 410px;
+        margin: 0 auto;
+    }
+    #circover .box li{
+        position: relative;
+        float:left;
+        width:200px;
+        height:200px;
+    }
+    #circover .box li:nth-child(even){
+        margin-left:10px;
+    }
+    #circover .box li:nth-child(-n+2){
+        margin-bottom:10px;
+    }
+    #circover .box li div{
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        background-color:#470826;
+        text-align: center;
+        color: #eee;
+    }
+    #circover .box li div h2{
+        line-height: 100px;
+    }
+    #circover .box li img{
+        position: absolute;
+        top:0;
+        left: 0;
+        width: 200px;
+        height: 200px;
+        z-index: 2;
+        border-radius: 50%;
+        transition: .8s;
+    }
+    #circover .box li:nth-child(even) img{ transform-origin: 95% 45%;}
+    #circover .box li:nth-child(odd) img{ transform-origin: 5% 45%;}
+    #circover .box li:hover:nth-child(even) img{
+        transform: rotate(-170deg);
+    }
+    #circover .box li:hover:nth-child(odd) img{
+        transform: rotate(170deg);
+    }
+</style>
+<body>
+    <!-- 愤怒的小鸟猛回头 -->
+    <div id="bird">
+        <p>愤怒的小鸟猛回头： <span>鼠标划过图片查看</span></p>
+        <div class="box">
+            <i class="smalcir"></i>
+        </div>
+    </div>
+
+    <!-- 图文覆盖显示 -->
+    <div id="circover">
+        <p>翻盖显示文字：<span>鼠标划过图片查看</span></p>
+        <div class="box">
+            <ul>
+                <li>
+                    <div>
+                        <h2>桃花花语</h2>
+                        <span>爱情的俘虏</span>
+                    </div>
+                    <img src="images/1.jpg" width="300" height="300" alt="taohua">
+                </li>
+                <li>
+                    <div>
+                        <h2>薰衣草花语</h2>
+                        <span>等待爱情</span>
+                    </div>
+                    <img src="images/2.jpg" width="300" height="300" alt="taohua">
+                </li>
+                <li>
+                    <div>
+                        <h2>梅花花语</h2>
+                        <span>哀愁悲怀的心</span>
+                    </div>
+                    <img src="images/3.jpg" width="300" height="300" alt="taohua">
+                </li>
+                <li>
+                    <div>
+                        <h2>梧桐花语</h2>
+                        <span>情窦初开</span>
+                    </div>
+                    <img src="images/4.jpg" width="300" height="300" alt="taohua">
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
