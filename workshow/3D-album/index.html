@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="Author" content="Ninachow">
+    <meta name="keyword" content="3D 相册">
+    <meta name="discription" content="3d旋转相册">
+    <title>3d旋转相册</title>
+</head>
+<style>
+    *{margin: 0;padding: 0;}
+    body{overflow: hidden;background-color: black;}
+
+    #presepctive{           
+        perspective: 800px;    /* 设置3D景深 */
+    }
+    #wrap{
+        position: relative;
+        width:133px;
+        height: 200px;
+        margin: 300px auto;
+        transform-style: preserve-3d;
+        transform: rotateY(0deg) rotateX(-20deg);
+    }
+    #wrap img{
+        position: absolute;
+        transition-duration: 2s;
+        box-shadow: 0 0 20px 0 red;
+        -webkit-box-reflect: below 5px -webkit-linear-gradient(top,rgba(0,0,0,0) 30%,rgba(0,0,0,.5) 100%)
+    }
+</style>
+<body>
+    <div id = "presepctive">
+        <div id="wrap">
+            <img src="img/1.jpg" alt="">
+            <img src="img/5.jpg" alt="">
+            <img src="img/6.jpg" alt="">
+            <img src="img/2.jpg" alt="">
+            <img src="img/7.jpg" alt="">
+            <img src="img/8.jpg" alt="">
+            <img src="img/3.jpg" alt="">
+            <img src="img/9.jpg" alt="">
+            <img src="img/10.jpg" alt="">
+            <img src="img/4.jpg" alt="">
+            <img src="img/11.jpg" alt="">
+        </div>
+    </div>
+
+    <script>
+        window.onload = function(){
+            var aImg = document.getElementsByTagName("img");
+            var wrap = document.getElementById("wrap");
+            var Deg = 360/aImg.length;
+
+            Array.prototype.forEach.call(aImg,function(el,index){
+                el.style.transform = "rotateY("+ Deg*index +"deg) translateZ(350px)";
+                el.style.transitionDelay = 0.1 *(aImg.length - index)+"s";
+            })
+
+            var newX,newY,lastX,lastY;
+            var mulX, mulY;
+            var votX=-20,votY=0;
+
+            document.onmousedown = function(e){
+                lastX = e.clientX;
+                lastY = e.clientY;
+                this.onmousemove = function(e){
+                    
+                    newX = e.clientX;
+                    newY = e.clientY;
+                    mulX = newX - lastX;
+                    mulY = newY - lastY;
+                    votX -= mulY*0.3;
+                    votY += mulX*0.1;
+
+
+                    wrap.style.transform = "rotateX("+ votX +"deg) rotateY("+ votY +"deg)";
+
+                    lastX = newX;
+                    lastY = newY;
+                    console.log(e.clientX,e.clientY)
+                }
+                this.onmouseup = function(){
+                    this.onmousemove = null;
+                }
+            }
+        }
+       
+    </script>
+</body>
+</html>
