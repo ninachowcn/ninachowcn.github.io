@@ -12,14 +12,15 @@
 <style>
     *{margin: 0;padding: 0;}
     ul,ol{list-style: none;}
-
+    body{background: linear-gradient(#0f8397,#fbff00)}
     #bird{
         float: left;
         width:400px;
+        height:387px;
         background-color: #262936;
         border-radius: 10px;
-        padding:75px 0;
-        margin-left:10px;
+        padding:75px 0 0;
+        margin:10px 0 0 10px;
     }
     #bird p{
         position: relative;
@@ -89,10 +90,11 @@
     #circover{
         float: left;
         width:810px;
+        height:430px;
         background-color: #262936;
         border-radius: 10px;
         padding:16px 0;
-        margin-left:10px;
+        margin:10px 0 0 10px;
     }
     #circover p{
         padding-left: 20px;
@@ -144,6 +146,93 @@
     #circover .box li:hover:nth-child(odd) img{
         transform: rotate(170deg);
     }
+
+    /* ------------------------------吃豆人--------------------------------- */
+    #eatbean{
+        float: left;
+        height:462px;
+        width:900px;
+        border-radius: 10px;
+        background-color: #262936;
+        margin:10px 0 0 10px;
+    }
+    #eatbean .box{
+        position: relative;
+        width:200px;
+        height:200px;
+        /* background-color: #0fac97; */
+        border-radius: 50%;
+        margin-top:120px;
+        box-shadow: 200px 0 0 -80px #fff,
+        300px 0 0 -80px #fff,
+        400px 0 0 -80px #fff,
+        500px 0 0 -80px #fff,
+        600px 0 0 -80px #fff,
+        700px 0 0 -80px #fff;
+        animation: go3 .8s infinite;
+    }
+    #eatbean .box:before{
+        display: block;
+        content: "";
+        width:200px;
+        height:100px;
+        background-color: #e5f50a;
+        margin-left:50px;
+        border-radius: 100px 100px 0 0;
+        animation: go1 .8s infinite;
+    }
+    #eatbean .box:after{
+        display: block;
+        content: "";
+        width:200px;
+        height:100px;
+        margin-left:50px;
+        background-color: #e5f50a;
+        border-radius: 0 0 100px 100px;
+        animation: go2 .8s infinite;
+    }
+    #eatbean .box i{
+        position: absolute;
+        top:27px;
+        left:130px;
+        width:30px;
+        height: 30px;
+        border-radius: 50%;
+        background-color: #000;
+    }
+    #eatbean .box p{
+        position: absolute;
+        top:-85px;
+        left: 20px;
+        color: #e4dede;
+        font-size: 20px;
+    }
+    @keyframes go1{
+        0%{transform: rotate(0)}
+        50%{transform: rotate(-30deg)}
+        100%{transform: rotate(0)}
+    }
+    @keyframes go2{
+        0%{transform: rotate(0)}
+        50%{transform: rotate(30deg)}
+        100%{transform: rotate(0)}
+    }
+    @keyframes go3{
+        0%{box-shadow: 200px 0 0 -80px #fff,
+            300px 0 0 -80px #fff,
+            400px 0 0 -80px #fff,
+            500px 0 0 -80px #fff,
+            600px 0 0 -80px #fff,
+            700px 0 0 -80px #fff
+            }
+        100%{box-shadow: 120px 0 0 -80px #fff,
+            220px 0 0 -80px #fff,
+            320px 0 0 -80px #fff,
+            420px 0 0 -80px #fff,
+            520px 0 0 -80px #fff,
+            620px 0 0 -80px #fff
+        }
+    }
 </style>
 <body>
     <!-- 愤怒的小鸟猛回头 -->
@@ -188,6 +277,14 @@
                     <img src="images/4.jpg" width="300" height="300" alt="taohua">
                 </li>
             </ul>
+        </div>
+    </div>
+
+    <!-- 吃豆人 -->
+    <div id="eatbean">
+        <div class="box">
+            <p>吃豆人</p>
+            <i></i>
         </div>
     </div>
 </body>
