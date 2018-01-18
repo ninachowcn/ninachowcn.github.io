@@ -149,12 +149,7 @@
 
     /* ------------------------------吃豆人--------------------------------- */
     #eatbean{
-        float: left;
-        height:462px;
-        width:900px;
-        border-radius: 10px;
-        background-color: #262936;
-        margin:10px 0 0 10px;
+        width:900px;  
     }
     #eatbean .box{
         position: relative;
@@ -233,6 +228,144 @@
             620px 0 0 -80px #fff
         }
     }
+/* ------------------------图片堆叠索引卡片 -----------------------*/
+    #indexcards{
+        width:600px;
+    }
+    .bigbox{
+        float: left;
+        height:462px;
+        border-radius: 10px;
+        background-color: #262936;
+        margin:10px 0 0 10px;
+        perspective: 300px;
+    }
+    #indexcards .box{
+        position: relative;
+        width:155px;
+        height:360px;
+        margin:36px auto 0;        
+    }
+    #indexcards .box ul{
+        transform-style: preserve-3d;
+    }  
+    #indexcards .box li{
+        position: absolute;
+        width:100%;
+        height: 360px;
+        transform-origin: 50% 100%;
+        border-radius: 10px;
+        background-color: #9c3983;
+        background: url("images/cards/bg.jpg");
+        box-shadow: 0 0 10px 2px #000;     
+    }
+    #indexcards .box li:nth-child(1){
+        transform:rotate(-40deg) translateZ(0);
+    }
+    #indexcards .box li:nth-child(1):hover{
+        transform:rotate(-40deg) translateZ(30px);
+    }
+    #indexcards .box li:nth-child(2){
+        transform:rotate(-20deg) translateZ(10px);
+    }
+    #indexcards .box li:nth-child(2):hover{
+        transform:rotate(-20deg) translateZ(30px);
+    }
+    #indexcards .box li:nth-child(3){
+        transform:translateZ(20px);
+    }
+    #indexcards .box li:nth-child(3):hover{
+        transform:translateZ(30px);
+    }
+    #indexcards .box li:nth-child(4){
+        transform:rotate(20deg) translateZ(10px);
+    }
+    #indexcards .box li:nth-child(4):hover{
+        transform:rotate(20deg) translateZ(30px);
+    }  
+    #indexcards .box li:nth-child(5){
+        transform:rotate(40deg) translateZ(0);
+    }
+    #indexcards .box li:nth-child(5):hover{
+        transform:rotate(40deg) translateZ(30px);
+    }
+    #indexcards .box li h3{
+       color: #d5d3d1;
+       font-size: 30px;
+       text-shadow: 3px 3px 2px #000;
+       text-align: center;
+       margin-top:20px;
+    }
+    #indexcards .box li img{
+        width:140px;
+        height:140px;
+        background-color: #0f8397;
+        margin:16px 0 0 7px;
+        border-radius: 4px;
+    }
+    #indexcards .box li p{
+        margin-left:15px;
+        font-size: 18px;
+        line-height: 30px;
+        color: #7c7c7c;
+    }
+    #indexcards .box > p{
+        position: absolute;
+        top:-20px;
+        left:-200px;
+        font-size: 20px;
+        color: #e4dede;
+    }
+
+/* ----------------------------3D键盘------------------------------ */
+    #keyboard{
+        position: relative;
+        width:900px;
+        perspective: 800px;
+    }
+    #keyboard p{
+        position: absolute;
+        top:20px;
+        left:30px;
+        font-size: 20px;
+        color: #e4dede;
+    }
+    #keyboard .box{
+        height: 270px;
+        width:700px;
+        background-color: #0fac97;
+        margin:90px auto;
+        border-radius: 10px;       
+        animation: keyboardmove 3s infinite;
+    }
+    #keyboard .box:hover{
+        animation-play-state: paused;
+    }
+    #keyboard .box li{
+        float: left;
+        width:50px;
+        line-height:50px;
+        margin: 20px 10px;
+        color: #fff;
+        text-align: center;
+        border-radius: 8px;
+        background-color: #262936;
+        transition: 1s cubic-bezier(.27,-0.82,.22,1.22);
+    }
+    #keyboard .box li:hover{
+        transform: scale(1.1) rotate(45deg);
+    }
+    #keyboard .box li:nth-child(11){
+        margin-left:44px;
+    }
+    #keyboard .box li:nth-child(20){
+        margin-left:80px;
+    }
+    @keyframes keyboardmove{
+        0%{transform: rotateY(-30deg)}
+        50%{transform: rotateY(30deg)}
+        100%{transform: rotateY(-30deg)}
+    }
 </style>
 <body>
     <!-- 愤怒的小鸟猛回头 -->
@@ -281,10 +414,80 @@
     </div>
 
     <!-- 吃豆人 -->
-    <div id="eatbean">
+    <div id="eatbean" class="bigbox">
         <div class="box">
             <p>吃豆人</p>
             <i></i>
+        </div>
+    </div>
+
+    <!-- 图片堆叠索引卡片 -->
+    <div id="indexcards" class="bigbox">
+        <div class="box">
+            <p>图片堆叠索引卡</p>
+            <ul>
+                <li>
+                    <h3>CARD1</h3>
+                    <img src="images/cards/1.png" width="512" height="512" alt="啄木鸟">
+                    <p>Dog lives in a dog hut and loves to chew shoes</p>
+                </li>
+                <li>
+                    <h3>CARD2</h3>
+                    <img src="images/cards/2.png" width="512" height="512" alt="啄木鸟">
+                    <p>Dog lives in a dog hut and loves to chew shoes</p>
+                </li>
+                <li>
+                    <h3>CARD3</h3>
+                    <img src="images/cards/3.png" width="512" height="512" alt="啄木鸟">
+                    <p>Dog lives in a dog hut and loves to chew shoes</p>
+                </li>
+                <li>
+                    <h3>CARD4</h3>
+                    <img src="images/cards/4.png" width="512" height="512" alt="啄木鸟">
+                    <p>Dog lives in a dog hut and loves to chew shoes</p>
+                </li>
+                <li>
+                    <h3>CARD5</h3>
+                    <img src="images/cards/5.png" width="512" height="512" alt="啄木鸟">
+                    <p>Dog lives in a dog hut and loves to chew shoes</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 3D键盘 -->
+    <div id = "keyboard" class="bigbox">
+        <p>3D键盘:<span> 移动鼠标暂停运动</span></p>
+        <div class="box">
+            <ul>
+                <li>Q</li>
+                <li>W</li>
+                <li>E</li>
+                <li>R</li>
+                <li>T</li>
+                <li>Y</li>
+                <li>U</li>
+                <li>I</li>
+                <li>O</li>
+                <li>P</li>
+                <li>A</li>
+                <li>S</li>
+                <li>D</li>
+                <li>F</li>
+                <li>G</li>
+                <li>H</li>
+                <li>J</li>
+                <li>K</li>
+                <li>L</li>
+                <li>Z</li>
+                <li>X</li>
+                <li>C</li>
+                <li>V</li>
+                <li>B</li>
+                <li>N</li>
+                <li>M</li>
+                <li>&lt;</li>
+            </ul>
         </div>
     </div>
 </body>
