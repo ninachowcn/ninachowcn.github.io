@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>轮播图</title>           
+           
+</head>
+<style>
+    *{margin: 0;padding: 0;}
+    .fl{float:left;}
+    /* *::-webkit-scrollbar{
+        padding-left: 100px;    /* 隐藏侧边滚动条 ,对整个文档流都有效果 */
+    } 
+    */
+    ul,ol{list-style: none;}
+    .p-lr6{padding:0 6px;}
+    .clearfix{content:"";display: block;clear:both;}
+    #wrap{
+        width:90%;
+        height:600px;
+        margin: 20px auto;
+        padding:20px 40px;
+        background: #04181a;
+        border-radius: 20px;
+    } 
+    .box{
+        position: relative;
+        width:900px;
+        height:400px;
+        background-color: black;
+        overflow: hidden;
+        margin: auto;
+        box-shadow: 0 0 20px 0 #f5f5f5;
+    }
+    img{
+        width:900px;
+        height:400px;
+    }
+    .box ul{
+        position: absolute;
+        top:0;
+        left:-900px;
+        width:800%;
+        /* transform: translateX(0px);
+        transition: .5s linear; */
+    }
+    .box li{
+        float: left;        
+    }
+
+    .box .btn{
+        position: absolute;
+        bottom: 10px;
+        left:0;
+        width: 100%;
+        text-align: center;
+    }
+    .box .btn span{
+        display: inline-block;
+        color: #fff;
+        background-color: #0977aad3;
+        width:30px;
+        line-height: 30px;
+        border-radius: 50%;
+        user-select: none;
+    }
+    .box .btn span.active{
+        background-color: #49aa099d;
+    }
+    .next , .prev{
+        position: absolute;
+        font-size: 80px;
+        line-height: 80px;
+        padding-bottom: 16px;
+        top:152px;
+        width:60px;
+        text-align: center;
+        color: #c5c9a5c2;
+        user-select: none;
+        background-color: #2723236e;
+    }
+    .next{right:0;}
+    .next:active , .prev:active{ background-color: #272323b6; }
+</style>
+<body>
+    <div id="wrap" >
+       <div class="box">
+           <ul>
+               <li><img src="images/6.jpg" width="1000" height="666" alt="1"></li>
+               <li><img src="images/1.jpg" width="1000" height="675" alt="1"></li>
+               <li><img src="images/2.jpg" width="1000" height="666" alt="1"></li>
+               <li><img src="images/3.jpg" width="1000" height="655" alt="1"></li>
+               <li><img src="images/4.jpg" width="1000" height="666" alt="1"></li>
+               <li><img src="images/5.jpg" width="1000" height="650" alt="1"></li>
+               <li><img src="images/6.jpg" width="1000" height="666" alt="1"></li>
+               <li><img src="images/1.jpg" width="1000" height="675" alt="1"></li>
+           </ul>
+           <div class="btn">
+               <span class="active">1</span>
+               <span >2</span>
+               <span>3</span>
+               <span>4</span>
+               <span>5</span>
+               <span>6</span>
+           </div>
+           <div class="point next">></div>
+           <div class="point prev"><</div>
+       </div>
+    </div>
+<script src="js/moveTime.js"></script>
+<script>      
+   var oBox = document.getElementsByClassName("box")[0],
+       oUl = oBox.getElementsByTagName("ul")[0],
+       aImgLi = oBox.getElementsByTagName("img"),
+       aBtn = oBox.getElementsByTagName("span"),
+       aPointBtn = oBox.getElementsByClassName("point"),
+       count = 0,
+       timer = null,
+       startTime = 0;
+
+       aBtn = Array.prototype.slice.call(aBtn,0);
+       aPointBtn = Array.prototype.slice.call(aPointBtn,0);
+    //    console.log(aBtn)
+
+       aBtn.forEach(function(el,index){  
+            el.onclick = function(){
+                moveTime(oUl,{
+                    left:-900*(index+1)
+                },1000,function(){
+                    aBtn.forEach(function(el2){
+                        el2.className = "";
+                    })
+                    el.className = "active";
+                }) 
+            count = index;
+            }
+       })
+
+       startTime = new Date();
+       aPointBtn.forEach(function(el,index){
+            el.onclick = function(){
+                var newTime = new Date() - startTime;
+                // console.log(newTime)
+                if(newTime>1000){
+                    if(index){
+                        count==-1?count=6:count--;
+                        moveTime(oUl,{
+                            left:-900*(count+1)
+                        },1000,function(){                           
+                            if(count == -1){ 
+                                count = aImgLi.length-3;          
+                                oUl.style.left = -(count+1)*900 + "px"; 
+                            }
+                            aBtn.forEach(function(el2){
+                                el2.className = "";
+                            })
+                            aBtn[count].className = "active";
+                        }) 
+                    }else{
+                        count==6?count=0:count++;
+                        moveTime(oUl,{
+                            left:-900*(count+1)
+                        },1000,function(){
+                            if(count == aImgLi.length-2){
+                                count = 0;                               
+                                oUl.style.left = -(count+1) * 900 + "px"; 
+                            }
+                            aBtn.forEach(function(el2){
+                                el2.className = "";
+                            })
+                            aBtn[count].className = "active";   
+                        })   
+                    }
+                    startTime = new Date();
+                }
+                
+            }
+            
+       })
+
+       timer = setInterval(autoPlay,3000)
+       function autoPlay(){
+            count==6?count=0:count++;
+            moveTime(oUl,{
+                left:-900*(count+1)
+            },1000,function(){
+                if(count == aImgLi.length-2){
+                    count = 0;                               
+                    oUl.style.left = -(count+1) * 900 + "px"; 
+                }
+                aBtn.forEach(function(el2){
+                    el2.className = "";
+                })
+                aBtn[count].className = "active";   
+            })   
+       }
+    
+       oBox.onmouseover = function(){
+            clearInterval(timer)
+       }
+       oBox.onmouseout = function(){
+            timer = setInterval(autoPlay,3000)
+       }
+       
+</script>
+
+</body>
+</html>

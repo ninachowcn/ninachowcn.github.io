@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="AJAX.js"></script>
+    <title>瀑布流懒加载</title>
+<style>
+    *{margin: 0;padding: 0;}
+    ul{list-style: none}
+    #container{
+        width:90%;
+        background-color: black;
+        margin: 0 auto;
+        color: aliceblue;
+        text-align: center;
+        padding-top:30px; 
+    }
+    ul::after{
+        content: "";
+        display: block;
+        clear:both;
+    }
+    li{
+        float: left;
+        width: 20%;
+        padding: 0 6px;
+        box-sizing: border-box;
+    }
+    img{
+        width:100%;
+    }
+    p{
+        padding-bottom: 20px;
+    }
+</style>
+</head>
+
+<body>
+    <div id="container">
+        <h1>搞笑图片</h1>
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+        <p class="lasttext"></p>
+    </div>
+<script>
+    var oCon = document.getElementById("container"),
+        aLi = oCon.getElementsByTagName("li"),
+        page = 1,
+        totalP,
+        onoff;
+
+    getData(page);
+    function getData(page){
+        var url = "https://route.showapi.com/341-2?maxResult=20&page="+ page +"&showapi_appid=41249&showapi_sign=b3df448fb71d46f4a99a751d85b91996"
+        ajax("get", url, "",function(data){
+            
+            totalP = JSON.parse(data).showapi_res_body.allPages;
+            var cdata = JSON.parse(data).showapi_res_body.contentlist;
+            var fragm = document.createDocumentFragment();
+            
+                // cdata.forEach(function(el){
+                //     var oP = document.createElement("p"),
+                //         oimg = document.createElement("img");
+                //     var _index = shortLi();
+
+                //     oP.innerHTML = el.title;
+                //     oimg.src = el.img;
+                //     fragm.appendChild(oimg);
+                //     fragm.appendChild(oP);
+                //     aLi[_index].appendChild(fragm); 
+                // }) 
+
+                (function loadImg(i){
+                    if(i > 19){
+                        onoff = true;
+                        return;
+                    }
+                    var oP = document.createElement("p"),
+                        oimg = document.createElement("img")
+                        item = cdata[i];
+                    var _index = shortLi();
+                
+                    oP.innerHTML = item.title;
+                    oimg.src = item.img;
+
+                    oimg.onload = function(){
+                        fragm.appendChild(oimg);
+                        fragm.appendChild(oP);
+                        aLi[_index].appendChild(fragm); 
+                        i++;
+                        loadImg(i);
+                    }
+                })(0)
+        })
+    }
+    
+    function shortLi(){
+        var short = 0,
+            h = aLi[0].offsetHeight;
+        for(var i=0,len=aLi.length; i<len; i++){
+            if(aLi[i].offsetHeight < h){
+                short = i;
+                h = aLi[i].offsetHeight;
+            }
+        }
+        return short;
+    }
+    function longLi(){
+        var long = 0,
+            h = aLi[0].offsetHeight;
+        for(var i=0,len=aLi.length; i<len; i++){
+            if(aLi[i].offsetHeight > h){
+                long = i;
+                h = aLi[i].offsetHeight;
+            }
+        }
+        return long;
+    }
+
+    window.onscroll = function(){
+       // console.log(window.scrollY,window.innerHeight)
+        var longL = shortLi()
+            longH = aLi[longL].offsetHeight;
+
+        if(window.scrollY + window.innerHeight >= longH ){
+            if(onoff){
+                onoff=false;
+                console.log(onoff)
+                page++;
+                if(page < totalP+1){
+                    getData(page)
+                }
+            }
+            
+        }
+        if(page == totalP){
+            console.log(page)
+            var Ltext = oCon.getElementsByClassName("lasttext")[0];
+            Ltext.innerHTML +="*****没有更多*****"
+        }
+        
+
+    }
+   
+
+</script>
+</body>
+</html>

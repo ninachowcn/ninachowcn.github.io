@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>时钟</title>           
+           
+</head>
+<style>
+    *{margin: 0;padding: 0;}
+    .fl{float:left;}
+    *::-webkit-scrollbar{
+        padding-left: 100px;    /* 隐藏侧边滚动条 ,对整个文档流都有效果 */
+    }
+    ul,ol{list-style: none;}
+    .p-lr6{padding:0 6px;}
+    .clearfix{content:"";display: block;clear:both;}
+    #wrap{
+        width:100%;
+        height:900px;
+        margin:  auto;
+        padding:200px 100px;
+        background: #11191a;
+
+    } 
+    .box{
+        width:335px;
+        margin-right:100px;
+        margin-bottom: 40px;
+    }
+    .clock{
+        position: relative;
+        width:330px;
+        height:330px;
+        background-color: black;
+        border-radius: 50%;
+        margin-bottom: 10px;
+        box-shadow: 0 0 10px 0 #fff;
+    }
+    .clock li{
+        position: absolute;
+        top:0;
+        left:150px;
+        width:30px;
+        height:330px;
+        font-size: 30px;
+        text-align: center;
+        color: antiquewhite;
+    }
+    .clock li .half{
+        position: absolute;
+        top:0;
+    }
+    .clock li .otherhalf{
+        position: absolute;
+        bottom:0;
+    }
+    .clock li:nth-child(2){
+        transform: rotate(30deg);
+    }
+    .clock li:nth-child(3){
+        transform: rotate(60deg);
+    }
+    .clock li:nth-child(4){
+        transform: rotate(90deg);
+    }
+    .clock li:nth-child(5){
+        transform: rotate(120deg);
+    }
+    .clock li:nth-child(6){
+        transform: rotate(150deg);
+    }
+    .clock li:nth-child(2) p{
+        transform: rotate(-30deg);
+    }
+    .clock li:nth-child(3) p{
+        transform: rotate(-60deg);
+    }
+    .clock li:nth-child(4) p{
+        transform: rotate(-90deg);
+    }
+    .clock li:nth-child(5) p{
+        transform: rotate(-120deg);
+    }
+    .clock li:nth-child(6) p{
+        transform: rotate(-150deg);
+    }
+    .clock .hPoint{
+        position: absolute;
+        top:67px;
+        left:160px;
+        display: block;
+        width:10px;
+        height: 120px;
+        background-color: royalblue;
+        transform-origin:5px 100px;
+        /* transform: rotate(30deg); */
+    }
+    .clock .hPoint:before{
+        content: "";
+        position: absolute;
+        top:-16px;
+        left:-3px;
+        border:8px solid transparent; 
+        border-bottom-color: royalblue; 
+    }
+    .clock .mPoint{
+        position: absolute;
+        top:57px;
+        left:162px;
+        display: block;
+        width:6px;
+        height: 130px;
+        background-color: #fa9c10;
+        transform-origin:3px 110px;
+        /* transform: rotate(90deg); */
+    }
+    .clock .mPoint:before{
+        content: "";
+        position: absolute;
+        top:-12px;
+        left:-3px;
+        border:6px solid transparent; 
+        border-bottom-color: #fa9c10; 
+    }
+    .clock .sPoint{
+        position: absolute;
+        top:37px;
+        left:163px;
+        display: block;
+        width:4px;
+        height: 150px;
+        background-color: #e141d9;
+        transform-origin:2px 130px;
+        /* transform: rotate(90deg); */
+    }
+    .clock .sPoint:before{
+        content: "";
+        position: absolute;
+        top:-10px;
+        left:-3px;
+        border:5px solid transparent; 
+        border-bottom-color: #e141d9; 
+    }
+    .clock span{
+        position: absolute;
+        display: block;
+        top:60px;
+        left:0;
+        right: 0;
+        width:160px;
+        text-align: center;
+        margin:auto;
+        font-size: 25px;
+        color: #0f94b6;
+    }
+</style>
+<body>
+    <div id="wrap" class="clearfix">
+        <div class="box box1 fl">
+            <div class="clock">
+                <span>中国时间<br>China</span>
+                <ul>
+                    <li><p class="half">12</p><p class="otherhalf p-lr6">6</p></li>
+                    <li><p class="half p-lr6">1</p><p class="otherhalf p-lr6">7</p></li>
+                    <li><p class="half p-lr6">2</p><p class="otherhalf p-lr6">8</p></li>
+                    <li><p class="half p-lr6">3</p><p class="otherhalf p-lr6">9</p></li>
+                    <li><p class="half p-lr6">4</p><p class="otherhalf">10</p></li>
+                    <li><p class="half p-lr6">5</p><p class="otherhalf">11</p></li>
+                </ul>
+                <i class="hPoint"></i>
+                <i class="mPoint"></i>
+                <i class="sPoint"></i>
+            </div>
+           <img src="images/0.png" class = "mytime" alt="h">
+           <img src="images/0.png" class = "mytime" alt="h">
+           <img src="images/d.png" alt="d">
+           <img src="images/0.png" class = "mytime" alt="m">
+           <img src="images/0.png" class = "mytime" alt="m">
+           <img src="images/d.png" alt="d">
+           <img src="images/0.png" class = "mytime" alt="s">
+           <img src="images/0.png" class = "mytime" alt="s">
+        </div>
+        <div class="box box2 fl">
+            <div class="clock">
+                <span>东京时间<br>Japan</span>
+                <ul>
+                    <li><p class="half">12</p><p class="otherhalf p-lr6">6</p></li>
+                    <li><p class="half p-lr6">1</p><p class="otherhalf p-lr6">7</p></li>
+                    <li><p class="half p-lr6">2</p><p class="otherhalf p-lr6">8</p></li>
+                    <li><p class="half p-lr6">3</p><p class="otherhalf p-lr6">9</p></li>
+                    <li><p class="half p-lr6">4</p><p class="otherhalf">10</p></li>
+                    <li><p class="half p-lr6">5</p><p class="otherhalf">11</p></li>
+                </ul>
+                <i class="hPoint"></i>
+                <i class="mPoint"></i>
+                <i class="sPoint"></i>
+            </div>
+            <img src="images/0.png" class = "mytime" alt="h">
+            <img src="images/0.png" class = "mytime" alt="h">
+            <img src="images/d.png" alt="d">
+            <img src="images/0.png" class = "mytime" alt="m">
+            <img src="images/0.png" class = "mytime" alt="m">
+            <img src="images/d.png" alt="d">
+            <img src="images/0.png" class = "mytime" alt="s">
+            <img src="images/0.png" class = "mytime" alt="s">
+        </div>
+        <div class="box box3 fl">
+            <div class="clock">
+                <span>芝加哥时间<br>Chicago</span>
+                <ul>
+                    <li><p class="half">12</p><p class="otherhalf p-lr6">6</p></li>
+                    <li><p class="half p-lr6">1</p><p class="otherhalf p-lr6">7</p></li>
+                    <li><p class="half p-lr6">2</p><p class="otherhalf p-lr6">8</p></li>
+                    <li><p class="half p-lr6">3</p><p class="otherhalf p-lr6">9</p></li>
+                    <li><p class="half p-lr6">4</p><p class="otherhalf">10</p></li>
+                    <li><p class="half p-lr6">5</p><p class="otherhalf">11</p></li>
+                </ul>
+                <i class="hPoint"></i>
+                <i class="mPoint"></i>
+                <i class="sPoint"></i>
+            </div>
+            <img src="images/0.png" class = "mytime" alt="h">
+            <img src="images/0.png" class = "mytime" alt="h">
+            <img src="images/d.png" alt="d">
+            <img src="images/0.png" class = "mytime" alt="m">
+            <img src="images/0.png" class = "mytime" alt="m">
+            <img src="images/d.png" alt="d">
+            <img src="images/0.png" class = "mytime" alt="s">
+            <img src="images/0.png" class = "mytime" alt="s">
+        </div>
+    </div>
+
+<script>      
+    (function timeChina(){
+        var obox1 = document.getElementsByClassName("box1")[0],
+            aimgTimes = obox1.getElementsByClassName("mytime"),
+            atimePoint = obox1.getElementsByTagName("i"),
+
+            obox2 = document.getElementsByClassName("box2")[0],
+            aimgTimes2 = obox2.getElementsByClassName("mytime"),
+            atimePoint2 = obox2.getElementsByTagName("i"),
+
+            obox3 = document.getElementsByClassName("box3")[0],
+            aimgTimes3 = obox3.getElementsByClassName("mytime"),
+            atimePoint3 = obox3.getElementsByTagName("i"),
+
+            zoneC = 8,
+            zoneJ = 9,
+            zoneZ = -6;
+
+        timeChange(aimgTimes,atimePoint,zoneC);
+        timeChange(aimgTimes2,atimePoint2,zoneJ);
+        timeChange(aimgTimes3,atimePoint3,zoneZ);
+        setInterval(function(){
+            timeChange(aimgTimes,atimePoint,zoneC);
+            timeChange(aimgTimes2,atimePoint2,zoneJ);
+            timeChange(aimgTimes3,atimePoint3,zoneZ);
+        },1000);
+    })();
+    
+    function timeChange(aimgTimes,atimePoint,zoneC){
+        var nowTime = new Date();
+
+        /* -----zone函数传入时区，返回添加不同时区时的地区时间[h,h,m,m,s,s]--------*/ 
+        var arrTime1 = zone(zoneC);
+        imgChange(arrTime1,aimgTimes);
+        /*
+        -----这段代码是不计算时区时，修改电子时钟图片所需要的时间数组---------
+        arrTime1 = nowTime.toLocaleTimeString().split("午")[1].replace(/:/g,"").split(""),
+        arrTime1.length == 5? arrTime1.unshift("0"):arrTime1;
+        */
+        
+        /*---修改时钟角度所需要的时间数组[hh,mm,ss]-*/ 
+        var arrTime2 = zone(zoneC); 
+        arrTime2.splice(2,0,":");
+        arrTime2.splice(5,0,":");
+        arrTime2 = arrTime2.join("").split(":")
+        clockChange(arrTime2,atimePoint);      
+    }
+    function zone(zone){
+        var nowTime = new Date(),
+            arrTime = nowTime.toLocaleTimeString().split("午")[1].split(":");
+      
+            if(parseInt(arrTime[0])+zone-8 > 12){
+                arrTime[0] = ((parseInt(arrTime[0])+zone-8)%12).toString();
+                // console.log("dddd"+arrTime[0])
+            }else 
+            if(parseInt(arrTime[0])+zone-8 < 0 && parseInt(arrTime[0])+zone-8 > -12){
+                arrTime[0] = (Math.abs(12 + parseInt(arrTime[0])+zone-8)).toString();
+                //  console.log(arrTime[0])
+            }else 
+            if(parseInt(arrTime[0])+zone-8 <= -12){
+                arrTime[0] = (12 + (parseInt(arrTime[0])+zone-8)%12).toString();
+                // console.log("0k0k0"+arrTime[0])
+            }else{
+                arrTime[0] = (parseInt(arrTime[0])+zone-8).toString();               
+            }  
+        arrTime = arrTime.join("").split("");       
+        arrTime.length == 5? arrTime.unshift("0"):arrTime;
+        //  console.log(arrTime)
+        return arrTime;
+    }
+    /*
+    * ----------根据数字修改对应位置图片------------------
+    * @ arr,传入参数为时间数组，元素拆分后的 h,h,m,m,s,s
+    * @ arrimg, 传入图片对象集合，依次对应需要改变的图片位置
+    */ 
+    function imgChange(arr,arrimg){
+        for(var i=0,j=arr.length; i<j; i++){
+            arrimg[i].src = "images/"+ arr[i] +".png"
+        }
+    }
+    /*
+    *  ----------------------------------
+    * @str,传入的时间数组，["hh","mm","ss"]
+    *
+    * 秒针取值范围（0-59）每1秒移动6度，60秒移动360度, 计时器每秒执行一次，秒针跳动一次
+    * 分针每分钟取值范围（0-59）分钟数 * 6 = 当前分针角度，计时器每执行60次，分钟数改变，分针跳动一次
+    * 时针取值范围（0-12）1，小时数 * 30 = 整点时针度数   
+    *                  2，分钟数 / 60 * 30（1小时内分钟数在30度内走过的比例）= 非整点时针额外需要度度数
+                          计时器每执行60次，分钟数改变，重新刷新指针
+    *                  3，前两步相加为时针角度
+    */ 
+    function clockChange(str,atimePoint){ 
+        var hT = parseInt(str[0])*30 + parseFloat(str[1]/60)*30;
+        atimePoint[0].style.transform = "rotate("+ hT +"deg)";
+        atimePoint[1].style.transform = "rotate("+ str[1]*6 +"deg)";
+        atimePoint[2].style.transform = "rotate("+ str[2]*6 +"deg)"; 
+       // console.log(hT)
+    }
+
+
+</script>
+
+</body>
+</html>

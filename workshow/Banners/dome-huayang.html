@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>轮播图</title>           
+           
+</head>
+<style>
+    *{margin: 0;padding: 0;}
+    .fl{float:left;}
+    /* 隐藏侧边滚动条 ,对整个文档流都有效果 */
+     /* *::-webkit-scrollbar{
+        padding-left: 100px;    
+    }  */
+    
+    ul,ol{list-style: none;}
+    .p-lr6{padding:0 6px;}
+    .clearfix{content:"";display: block;clear:both;}
+    #wrap{
+        width:90%;
+        height:600px;
+        margin: 20px auto;
+        padding:20px 40px;
+        background: #04181a;
+        border-radius: 20px;
+    } 
+    .box{
+        position: relative;
+        width:1300px;
+        height:460px;
+        /* padding-top: 20px; */
+        /* background-color: black; */
+        overflow: hidden;
+        margin: auto;
+        /* box-shadow: 0 0 20px 0 #f5f5f5; */
+    }
+    img{
+        width:900px;
+        height:400px;
+    }
+    .box ul{
+        position: absolute;
+        top:10px;
+        left:0;
+        width:800%;
+    }
+    .box li{
+        position: absolute;
+        box-shadow: 0 0 20px 0 #f5f5f5;  
+        transition: all .5s linear;     
+    }
+    .box li.list1{
+        transform: translateX(0) scale(.8);
+        transform-origin: 0 100%;
+        z-index: 0;
+    }
+    .box li.list2{
+        transform: translateX(200px);
+        z-index: 2;
+    }
+    .box li.list3{
+        transform: translateX(400px) scale(.8);
+        transform-origin: 100% 100%;
+        z-index: 1;
+    }
+    .box li.list4{
+        transform: translateX(1300px) scale(.8);
+        transform-origin: 100% 100%;
+        z-index: 0;
+    }
+    .box li.list5{
+        transform: translateX(1300px) scale(.8);
+        transform-origin: 100% 100%;
+        z-index: 0;
+    }
+    .box li.list6{
+        transform: translateX(1300px) scale(.8);
+        transform-origin: 100% 100%;
+        z-index: 0;
+    }
+    
+    .box .btn{
+        position: absolute;
+        bottom: 0;
+        left:0;
+        width: 100%;
+        text-align: center;
+    }
+    .box .btn span{
+        display: inline-block;
+        color: #fff;
+        background-color: #0977aad3;
+        width:30px;
+        line-height: 30px;
+        border-radius: 50%;
+        user-select: none;
+    }
+    .box .btn span.active{
+        background-color: #49aa099d;
+    }
+   
+</style>
+<body>
+    <div id="wrap" >
+       <div class="box">
+           <ul class="banner">
+               <li class="list1"><img src="images/1.jpg" width="1000" height="675" alt="1"></li>
+               <li class="list2"><img src="images/2.jpg" width="1000" height="666" alt="1"></li>
+               <li class="list3"><img src="images/3.jpg" width="1000" height="655" alt="1"></li>
+               <li class="list4"><img src="images/4.jpg" width="1000" height="666" alt="1"></li>
+               <li class="list5"><img src="images/5.jpg" width="1000" height="650" alt="1"></li>
+               <li class="list6"><img src="images/6.jpg" width="1000" height="666" alt="1"></li>
+           </ul>
+           <div class="btn">
+               <span class="active">1</span>
+               <span >2</span>
+               <span>3</span>
+               <span>4</span>
+               <span>5</span>
+               <span>6</span>
+           </div>
+
+       </div>
+    </div>
+
+<script>      
+    var aBtn = document.getElementsByTagName("span"),
+        aLi = document.getElementsByTagName("li")
+        oBanner = document.querySelector(".banner"),
+        arrList=["list1","list2","list3","list4","list5","list6"],
+        index = 0;
+    
+    function btnChange(){
+        for(var el of aBtn){
+            el.className = "";
+        }
+        console.log(index)
+         aBtn[index].className = "active";
+    }
+    function nextPic(){
+        arrList.unshift(arrList[5]);
+        arrList.pop();
+        for(var i=0,len=aLi.length; i<len; i++){
+            aLi[i].className = arrList[i];
+        }
+        index>=5?index=0:index++;
+        console.log(index)
+        btnChange();
+    }
+    function prePic(){
+        arrList.push(arrList[0]);
+        arrList.shift();
+        for(var i=0,len=aLi.length; i<len; i++){
+            aLi[i].className = arrList[i];
+        }
+        index<=0?index=5:index--;
+        console.log(index)
+        btnChange();
+    }
+
+    oBanner.addEventListener("click",function(e){
+        //  console.log(e.target.parentNode)
+        var temli = e.target.parentNode
+        if(temli.className == "list1"){
+            prePic();
+        }else if(temli.className == "list3"){
+            nextPic();
+        }
+    })
+</script>
+
+</body>
+</html>

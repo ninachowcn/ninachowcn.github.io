@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>猜谜</title>
+<style>
+    *{margin: 0;padding: 0;}
+    ul{list-style: none;}
+    #box{
+        width:1000px;
+        height: 2360px;
+        background-color: bisque;
+        margin: 0 auto;
+    }
+    #box::after{
+        content: "";
+        display: block;
+        clear: both;
+    }
+    .aside{
+        float: left;
+        width:200px;
+    }
+    .aside  h2{
+        text-indent: 10px;
+        margin: 10px;
+    }
+    .aside li{
+        width:100px;
+        line-height: 30px;
+        margin: 1px auto 5px;
+        text-align: center;
+        color: azure;
+        background-color: #2aa595;
+        user-select: none;
+        cursor: pointer;
+    }
+    .aside li:hover{
+        background-color: #185c53 !important;
+    }
+    .aside li:nth-child(1){
+        background-color: #185c53;
+    }
+    .cont{
+        float: right;
+        width:760px;
+        padding:20px;
+    }
+    .cont .item{
+        padding: 20px;
+        margin-bottom: 10px;
+        background-color: beige;
+    }
+    .cont .item .question{
+        line-height: 30px;
+    }
+    .cont .item .answer span{
+        display: inline-block;
+        padding: 5px 20px;
+        color: #979592;
+        background-color: #979592;
+    }
+    .bottom{
+        float: left;
+        width: 1000px;
+        text-align: center;
+        padding-bottom: 20px;
+    }
+    .pre, .next{
+        display: inline-block;
+        padding: 5px 10px;
+        background-color: #bdb1b1;
+        border: 1px solid #cfc8c8;
+        user-select: none;
+        cursor: pointer;
+    }
+    .num{
+        display: inline-block;
+        width:40px;
+    }
+</style>
+</head>
+<body>
+    <div id = "box">
+        <div class="aside">
+            <h2>谜语类型：</h2>
+            <ul></ul>
+        </div>
+        <div class="cont">
+        </div>
+        <div class="bottom">
+            <span class="pre">上一页</span>
+            <span class="num">1</span>
+            <span class="next">下一页</span>
+        </div>
+    </div>
+<script>
+    var oBox = document.getElementById("box"),
+        oUl = oBox.getElementsByTagName("ul")[0],
+        aLi = oBox.getElementsByTagName("li"),
+        oCont = oBox.getElementsByClassName("cont")[0],
+        oPage = oBox.getElementsByClassName("num")[0],
+        categDate = [],
+        currCate = "gxmy",
+        currNum = 1,
+        totlNum = 0;
+
+    getCategory();
+    function getCategory(){
+       var url = "http://route.showapi.com/151-3?showapi_appid=55674&showapi_sign=3cc0d7467daf4cafb277ecad66e4f33d";
+       var xhr = new XMLHttpRequest();
+       var fragm = document.createDocumentFragment();
+       xhr.open("get",url,true);
+       xhr.send();
+
+       xhr.onreadystatechange = function(){
+            if(xhr.readyState === 4){
+                if(xhr.status === 304 || xhr.status>=200 && xhr.status < 300){
+                    categDate = JSON.parse(xhr.responseText).showapi_res_body.typeList;
+                    var fragm = document.createDocumentFragment();
+                    categDate.forEach(element => {
+                        var oli = document.createElement("li");
+                        oli.innerHTML = element.name;
+                        fragm.appendChild(oli)
+                    });
+                    oUl.appendChild(fragm);
+                }
+            }
+       }
+    }
+
+    (function initCont(){
+        var url = "http://route.showapi.com/151-4?showapi_appid=55674&showapi_sign=3cc0d7467daf4cafb277ecad66e4f33d&typeId=gxmy&page=1";
+
+        myAjax(url,function(data){
+            var fragm = document.createDocumentFragment();
+            var newData = data.showapi_res_body.pb.contentlist;
+            newData.forEach(function(el){
+                    var tDiv = document.createElement("div"),
+                        tPq = document.createElement("p"),
+                        tPa = document.createElement("p"),
+                        tA = document.createElement("span");
+                    tDiv.className = "item";
+                    tPq.className = "question";
+                    tPa.className = "answer";
+                    tPq.innerHTML = el.title;
+                    tA.innerHTML = el.answer.split("：")[1];
+                    tPa.innerHTML = "答案："
+                    tPa.appendChild(tA);
+                    tDiv.appendChild(tPq);
+                    tDiv.appendChild(tPa);
+                    fragm.appendChild(tDiv);
+                })
+            totlNum = data.showapi_res_body.pb.allPages;
+            oCont.appendChild(fragm);
+        })
+    })()
+
+    oUl.addEventListener("click",function(e){
+        var cat = e.target.innerHTML;
+        oCont.innerHTML = "";
+        oPage.innerHTML = 1;
+        currNum = 1;
+
+        for(var i=0,len=categDate.length; i<len; i++){
+            if(categDate[i].name == cat){
+                currCate = categDate[i].id;
+            }
+        }
+        for(var j=0,len=aLi.length; j<len; j++){
+            aLi[j].style.backgroundColor = "#2aa595";
+        }
+        if(e.target.parentNodes == "ul"){
+            e.target.style.backgroundColor = "#185c53";
+        }
+        
+  
+        var url = "http://route.showapi.com/151-4?showapi_appid=55674&showapi_sign=3cc0d7467daf4cafb277ecad66e4f33d&typeId=" + currCate + "&page=" + currNum;
+
+        myAjax(url,function(data){
+            var fragm = document.createDocumentFragment();
+            var newData = data.showapi_res_body.pb.contentlist;
+            newData.forEach(function(el){
+                    var tDiv = document.createElement("div"),
+                        tPq = document.createElement("p"),
+                        tPa = document.createElement("p"),
+                        tA = document.createElement("span");
+                    tDiv.className = "item";
+                    tPq.className = "question";
+                    tPa.className = "answer";
+                    tPq.innerHTML = el.title;
+                    tA.innerHTML = el.answer.split("：")[1];
+                    tPa.innerHTML = "答案："
+                    tPa.appendChild(tA);
+                    tDiv.appendChild(tPq);
+                    tDiv.appendChild(tPa);
+                    fragm.appendChild(tDiv);
+                })
+            totlNum = data.showapi_res_body.pb.allPages;
+            oCont.appendChild(fragm);
+        })
+    },false)
+
+    oCont.addEventListener("click",function(e){
+        e.target.style.color = "#000";      
+    },false)
+
+    function myAjax(url,callback){
+        var xhr = new XMLHttpRequest();
+        xhr.open("get",url,true);
+        xhr.send();
+
+        xhr.onreadystatechange = function(){
+            if(xhr.readyState === 4){
+                if(xhr.status === 304 || xhr.status>=200 && xhr.status < 300){
+                    var data = JSON.parse(xhr.responseText);
+                    callback(data);
+                }
+            }
+       }
+    }
+    changePage();
+    function changePage(){
+        var oPre = oBox.getElementsByClassName("pre")[0],
+            oNext = oBox.getElementsByClassName("next")[0];
+            
+       
+        oPre.onclick = function(el){
+            if(currNum > 1){
+                currNum--;
+                oCont.innerHTML = "";
+                oPage.innerHTML = currNum;
+
+                var url = "http://route.showapi.com/151-4?showapi_appid=55674&showapi_sign=3cc0d7467daf4cafb277ecad66e4f33d&typeId=" + currCate + "&page=" + currNum;
+                myAjax(url,function(data){
+                    var fragm = document.createDocumentFragment();
+                    var newData = data.showapi_res_body.pb.contentlist;
+                    newData.forEach(function(el){
+                            var tDiv = document.createElement("div"),
+                                tPq = document.createElement("p"),
+                                tPa = document.createElement("p"),
+                                tA = document.createElement("span");
+                            tDiv.className = "item";
+                            tPq.className = "question";
+                            tPa.className = "answer";
+                            tPq.innerHTML = el.title;
+                            tA.innerHTML = el.answer.split("：")[1];
+                            tPa.innerHTML = "答案："
+                            tPa.appendChild(tA);
+                            tDiv.appendChild(tPq);
+                            tDiv.appendChild(tPa);
+                            fragm.appendChild(tDiv);
+                        })
+                    totlNum = data.showapi_res_body.pb.allPages;
+                    oCont.appendChild(fragm);
+                })
+            }  
+        }
+
+        oNext.onclick = function(el){
+            if(currNum < totlNum){
+                console.log(totlNum)
+                currNum++;
+                oCont.innerHTML = "";
+                oPage.innerHTML = currNum;
+                var url = "http://route.showapi.com/151-4?showapi_appid=55674&showapi_sign=3cc0d7467daf4cafb277ecad66e4f33d&typeId=" + currCate + "&page=" + currNum;
+                myAjax(url,function(data){
+                    var fragm = document.createDocumentFragment();
+                    var newData = data.showapi_res_body.pb.contentlist;
+                    newData.forEach(function(el){
+                            var tDiv = document.createElement("div"),
+                                tPq = document.createElement("p"),
+                                tPa = document.createElement("p"),
+                                tA = document.createElement("span");
+                            tDiv.className = "item";
+                            tPq.className = "question";
+                            tPa.className = "answer";
+                            tPq.innerHTML = el.title;
+                            tA.innerHTML = el.answer.split("：")[1];
+                            tPa.innerHTML = "答案："
+                            tPa.appendChild(tA);
+                            tDiv.appendChild(tPq);
+                            tDiv.appendChild(tPa);
+                            fragm.appendChild(tDiv);
+                        })
+                    totlNum = data.showapi_res_body.pb.allPages;
+                    oCont.appendChild(fragm);
+                })
+            }  
+        }
+    }
+</script>
+</body>
+</html>
