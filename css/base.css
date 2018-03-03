@@ -40,3 +40,19 @@ a{
 .h200{height:200px;}
 .cdd5{color: #dd5c5c;}
 .c1bc{color: #1bc4ae;}
+.loading{
+    position: fixed;
+    background-color: #fff;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+}
+.loading > img{
+    position: absolute;
+    width:160px;
+    height:20px;
+    top:50%;
+    left:50%;
+    margin-top:-80px;
+    margin-left:-10px;  
+}

@@ -14,6 +14,7 @@
 </head>
 
 <body>
+    <div class="loading"><img src="./images/loading.gif" alt="loading"></div>
     <header>
         <div class="h-title">
             <img src="images/myhead.jpg" alt="myhead" />
@@ -463,6 +464,14 @@
         <p>©2017 Ninachow 版权所有</p>
         <p>站长统计 | 今日IP[0] | 今日PV[1] | 昨日IP[1] | 昨日PV[1] | | 当前在线[1]</p>
     </footer>
+
+<script>
+    document.onreadystatechange = function(){
+        if(document.readyState == "complete"){
+            document.getElementsByClassName("loading")[0].style.display="none";
+        }
+    }
+</script>
 </body>
 
 </html>
