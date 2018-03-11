@@ -223,12 +223,12 @@
         <div class="maincontent">
             <header class="m-box">
                 <a href="../index.html">首页</a> >
-                <a href="../index.html">HTML/CSS</a> >各大企业网站CSS代码初始化
+                <a href="../index.html">HTML/CSS</a> >CSS3 过渡效果
             </header>
             <div class="m-box">
                 <article>
                     <div class="m-header">
-                        <h2>各大企业网站CSS代码初始化</h2>
+                        <h2>CSS3 过渡效果</h2>
                         <div class="m-h-tags">
                             <span>
                                 <i class="iconfont icon-tixing"></i>2017年11月10日</span>
@@ -241,72 +241,103 @@
                         </div>
                     </div>
                     <div class="m-content">
-                        <p>CSS代码初始化，主要用于解决各个浏览器之间的兼容性问题，企业内部会有一套样式规范用于开发。</p>
-                        <!-- 高亮区 -->
-                        <em>腾讯QQ官网 初始化样式</em>
-                        <pre>
-                            <code class="css">  
-body,ol,ul,h1,h2,h3,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select{margin:0;padding:0} 
-body{font:12px"宋体","Arial Narrow",HELVETICA;background:#fff;-webkit-text-size-adjust:100%;} 
-a{color:#2d374b;text-decoration:none} 
-a:hover{color:#cd0200;text-decoration:underline} 
-em{font-style:normal} 
-li{list-style:none} 
-img{border:0;vertical-align:middle} 
-table{border-collapse:collapse;border-spacing:0} 
-p{word-wrap:break-word}                                                                             
-                            </code>
-                         </pre>
-                        <em>新浪官网 初始化样式</em>
-                        <pre>
-                             <code class="css">  
-body,ul,ol,li,p,h1,h2,h3,h4,h5,h6,form,fieldset,table,td,img,div{margin:0;padding:0;border:0;} 
-body{background:#fff;color:#333;font-size:12px; margin-top:5px;font-family:"SimSun","宋体","Arial Narrow";} 
+                        <!-- 文本内容 -->
+            <h3>CSS3 过渡</h3>
+            <p>CSS3 过渡是元素从一种样式逐渐改变为另一种的效果。 要实现这一点，必须规定两项内容：1， 指定要添加效果的CSS属性； 2，指定效果的持续时间。
+            </p>
 
-ul,ol{list-style-type:none;} 
-select,input,img,select{vertical-align:middle;} 
-    
-a{text-decoration:none;} 
-a:link{color:#009;} 
-a:visited{color:#800080;} 
-a:hover,a:active,a:focus{color:#c00;text-decoration:underline;}   
-                            </code>
-                        </pre>
-                        <em>淘宝官网 初始化样式</em>
-                        <pre>
-                              <code class="css">  
-body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, form, fieldset, legend, button, input, textarea, th, td { margin:0; padding:0; } 
-body, button, input, select, textarea { font:12px/1.5tahoma, arial, \5b8b\4f53; } 
-h1, h2, h3, h4, h5, h6{ font-size:100%; } 
-address, cite, dfn, em, var { font-style:normal; } 
-code, kbd, pre, samp { font-family:couriernew, courier, monospace; } 
-small{ font-size:12px; } 
-ul, ol { list-style:none; } 
-a { text-decoration:none; } 
-a:hover { text-decoration:underline; } 
-sup { vertical-align:text-top; } 
-sub{ vertical-align:text-bottom; } 
-legend { color:#000; } 
-fieldset, img { border:0; } 
-button, input, select, textarea { font-size:100%; } 
-table { border-collapse:collapse; border-spacing:0; }    
-                             </code>
-                           </pre>
+            <!-- 高亮区 -->
+            <h3>过渡属性</h3>
+            <em>1，transition-property： 规定应用过渡的 CSS 属性的名称。</em>
+            <pre>
+                <code class="css"> 
+/*将鼠标悬停在一个div元素上，逐步改变表格的 -宽度- ：*/
+div 
+{ 
+transition-property:width;       /*仅宽度变化*/
+-moz-transition-property: width; /* Firefox 4 */ 
+-webkit-transition-property:width; /* Safari and Chrome */ 
+-o-transition-property:width; /* Opera */ 
+} 
+div:hover {width:300px;}  
 
-                        <em>网易官网 初始化样式</em>
-                        <pre>
-                            <code class="css">  
-html {overflow-y:scroll;} 
-body {margin:0; padding:29px00; font:12px"\5B8B\4F53",sans-serif;background:#ffffff;} 
-div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,blockquote,p{padding:0; margin:0;} 
-table,td,tr,th{font-size:12px;} 
-li{list-style-type:none;} 
-img{vertical-align:top;border:0;} 
-ol,ul {list-style:none;} 
-h1,h2,h3,h4,h5,h6{font-size:12px; font-weight:normal;} 
-address,cite,code,em,th {font-weight:normal; font-style:normal;}           
-                            </code>
-                        </pre>
+/*  其他参数值*/
+div 
+{ 
+transition-property:none;       /* 没有属性会获得过渡效果。*/
+transition-property:all;        /* 所有属性都将获得过渡效果。 */
+transition-property: width,height;   /* 定义应用过渡效果的 CSS 属性名称列表，列表以逗号分隔。*/
+}                      
+                </code>
+            </pre>
+
+            <!-- 高亮区 -->
+            <em>2，transition-duration：规定过渡所用时间</em>
+            <pre>
+                <code class="css">
+/*  最后5秒出现切换效果： */
+div 
+{
+    transition-duration: 5s;         /*  规定完成过渡效果需要花费的时间（以秒或毫秒计） */
+    -webkit-transition-duration: 5s; /* Safari */
+    transition-duration: 0;          /* 默认值是 0，意味着不会有效果。 */
+}                    
+                </code>
+            </pre>
+
+            <!-- 高亮区 -->
+            <em>3，transition-timing-function： 规定过渡效果的时间曲线</em>
+            <pre>
+                <code class="css">
+/*  转场效果以同样的速度从开始到结束： */
+div 
+{
+    transition-timing-function: linear;  /*  */
+    -webkit-transition-timing-function: linear; /* Safari and Chrome */
+}     
+/*  其他参数设置  */
+div
+{
+    transition-timing-function: ease;    /* 默认值- 规定慢速开始，然后变快，然后慢速结束的过渡效果*/
+    transition-timing-function: linear;  /* 规定以相同速度开始至结束的过渡效果 */
+    transition-timing-function: ease-in;  /* 规定以慢速开始的过渡效果 */
+    transition-timing-function: ease-out;  /* 规定以慢速结束的过渡效果 */
+    transition-timing-function: ease-in-out;  /* 规定以慢速开始和结束的过渡效果 */
+    transition-timing-function: cubic-bezier(n,n,n,n);  /* 在 cubic-bezier 函数中定义自己的值。可能的值是 0 至 1 之间的数值。 */
+}
+                </code>
+            </pre>
+
+            <!-- 高亮区 -->
+            <em>4，transition-delay： 规定过渡效果何时开始。</em>
+            <pre>
+                 <code class="css">
+/*    transition-delay值是指以秒为单位（S）或毫秒（ms）, 指定秒或毫秒数之前要等待切换效果开始.*/
+div
+{
+    transition-delay: 2s;     /*  等待2秒前切换效果开始： */
+    -webkit-transition-delay: 2s; /* Safari */
+    transition-delay: 0;      /* 默认值 0 - 不需要等待，直接执行 */
+}
+                 </code>
+             </pre>
+
+            <!-- 高亮区 -->
+            <em>5，transition 组合属性。速记属性有四个属性（以上4个属性），通常使用组合写法</em>
+            <pre>
+                <code class="css">
+div
+{
+    transition-property: width; 
+    transition-duration: 5s; 
+    transition-timing-function: linear; 
+    transition-delay: 2s;
+
+    transition: width 5s linear 2s;   /*  名称 耗时 速度 延迟*/
+
+}
+                </code>
+            </pre>
 
                     </div>
                     <div class="m-footer">

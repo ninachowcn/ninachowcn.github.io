@@ -223,12 +223,12 @@
         <div class="maincontent">
             <header class="m-box">
                 <a href="../index.html">首页</a> >
-                <a href="../index.html">HTML/CSS</a> >各大企业网站CSS代码初始化
+                <a href="../index.html">HTML/CSS</a> >CSS3 动画效果
             </header>
             <div class="m-box">
                 <article>
                     <div class="m-header">
-                        <h2>各大企业网站CSS代码初始化</h2>
+                        <h2>CSS3 动画效果</h2>
                         <div class="m-h-tags">
                             <span>
                                 <i class="iconfont icon-tixing"></i>2017年11月10日</span>
@@ -241,72 +241,204 @@
                         </div>
                     </div>
                     <div class="m-content">
-                        <p>CSS代码初始化，主要用于解决各个浏览器之间的兼容性问题，企业内部会有一套样式规范用于开发。</p>
-                        <!-- 高亮区 -->
-                        <em>腾讯QQ官网 初始化样式</em>
-                        <pre>
-                            <code class="css">  
-body,ol,ul,h1,h2,h3,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select{margin:0;padding:0} 
-body{font:12px"宋体","Arial Narrow",HELVETICA;background:#fff;-webkit-text-size-adjust:100%;} 
-a{color:#2d374b;text-decoration:none} 
-a:hover{color:#cd0200;text-decoration:underline} 
-em{font-style:normal} 
-li{list-style:none} 
-img{border:0;vertical-align:middle} 
-table{border-collapse:collapse;border-spacing:0} 
-p{word-wrap:break-word}                                                                             
-                            </code>
-                         </pre>
-                        <em>新浪官网 初始化样式</em>
-                        <pre>
-                             <code class="css">  
-body,ul,ol,li,p,h1,h2,h3,h4,h5,h6,form,fieldset,table,td,img,div{margin:0;padding:0;border:0;} 
-body{background:#fff;color:#333;font-size:12px; margin-top:5px;font-family:"SimSun","宋体","Arial Narrow";} 
+                        <!-- 文本内容 -->
+            <h3>动画帧@keyframes</h3>
+            <p>要创建CSS3动画，你将不得不了解@keyframes规则。 @keyframes规则是创建动画。 @keyframes规则内指定一个CSS样式和动画将逐步从目前的样式更改为新的样式。</p>
+            <p>当在 @keyframes 创建动画，把它绑定到一个选择器，否则动画不会有任何效果。 指定至少这两个CSS3的动画属性绑定向一个选择器： 1，规定动画的名称， 2，规定动画的时长
+            </p>
 
-ul,ol{list-style-type:none;} 
-select,input,img,select{vertical-align:middle;} 
-    
-a{text-decoration:none;} 
-a:link{color:#009;} 
-a:visited{color:#800080;} 
-a:hover,a:active,a:focus{color:#c00;text-decoration:underline;}   
-                            </code>
-                        </pre>
-                        <em>淘宝官网 初始化样式</em>
-                        <pre>
-                              <code class="css">  
-body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, form, fieldset, legend, button, input, textarea, th, td { margin:0; padding:0; } 
-body, button, input, select, textarea { font:12px/1.5tahoma, arial, \5b8b\4f53; } 
-h1, h2, h3, h4, h5, h6{ font-size:100%; } 
-address, cite, dfn, em, var { font-style:normal; } 
-code, kbd, pre, samp { font-family:couriernew, courier, monospace; } 
-small{ font-size:12px; } 
-ul, ol { list-style:none; } 
-a { text-decoration:none; } 
-a:hover { text-decoration:underline; } 
-sup { vertical-align:text-top; } 
-sub{ vertical-align:text-bottom; } 
-legend { color:#000; } 
-fieldset, img { border:0; } 
-button, input, select, textarea { font-size:100%; } 
-table { border-collapse:collapse; border-spacing:0; }    
-                             </code>
-                           </pre>
+            <!-- 高亮区 -->
+            <em>@keyframes的绑定，及使用</em>
+            <pre>
+                <code class="css">
+/*  把 "mymove" 动画捆绑到 div 元素，时长：5 秒： */        
+div
+{
+    animation: mymove 5s;
+    -webkit-animation: myfirst 5s; /* Safari 与 Chrome */
+}
+/*  使一个div元素逐渐移动200像素：  */
+@keyframes mymove
+{
+from {top:0px;}   
+to {top:200px;}
+}
 
-                        <em>网易官网 初始化样式</em>
-                        <pre>
-                            <code class="css">  
-html {overflow-y:scroll;} 
-body {margin:0; padding:29px00; font:12px"\5B8B\4F53",sans-serif;background:#ffffff;} 
-div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,blockquote,p{padding:0; margin:0;} 
-table,td,tr,th{font-size:12px;} 
-li{list-style-type:none;} 
-img{vertical-align:top;border:0;} 
-ol,ul {list-style:none;} 
-h1,h2,h3,h4,h5,h6{font-size:12px; font-weight:normal;} 
-address,cite,code,em,th {font-weight:normal; font-style:normal;}           
-                            </code>
-                        </pre>
+/* 指定的变化时发生时使用％，或关键字"from"和"to"，这是和0％到100％相同。*/
+/*  为了获得最佳的浏览器支持，您应该始终定义为0％和100％的选择器。*/
+
+@-webkit-keyframes mymove /* Safari and Chrome */
+{
+0% {top:0px;}              
+50% {top:100px;}
+100% {top:200px;}
+}                            
+                </code>
+            </pre>
+            <h3>CSS3的动画属性</h3>
+            <!-- 高亮区 -->
+            <em>1，animation-name：规定 @keyframes 动画的名称。</em>
+            <pre>
+                <code class="css">
+/* 动画名称必须写，名称会绑定动画帧，才能完成动画 */
+div
+{
+    animation-name: mymove;
+    -webkit-animation-name:mymove; /* Safari 和 Chrome */
+}
+                </code>
+            </pre>
+
+            <!-- 高亮区 -->
+            <em>2，animation-duration：规定动画完成一个周期所花费的秒或毫秒。默认是 0。</em>
+            <pre>
+                <code class="css">
+/* 动画一次完成的时间，默认值为0时，动画立马执行完成。 */
+/* 设置动画在两秒内完成: */
+div
+{
+    animation-duration:2s;
+    -webkit-animation-duration:2s; /* Safari 和 Chrome */
+}
+                </code>
+            </pre>
+            <!-- 高亮区 -->
+            <em>3，animation-timing-function：规定动画的速度曲线。默认是 "ease"。</em>
+            <pre>
+                 <code class="css">
+/*  从开始到结束以相同的速度播放动画: */
+div 
+{
+    animation-timing-function:linear;
+    -webkit-animation-timing-function:linear; /* Safari and Chrome */
+}     
+/*  其他参数设置  */
+div
+{
+    animation-timing-function: ease;    /* 默认值- 动画以低速开始，然后加快，在结束前变慢。*/
+    animation-timing-function: linear;  /* 	动画从头到尾的速度是相同的。 */
+    animation-timing-function: ease-in;  /* 动画以低速开始。 */
+    animation-timing-function: ease-out;  /* 动画以低速结束。 */
+    animation-timing-function: ease-in-out;  /* 动画以低速开始和结束。 */
+    animation-timing-function: cubic-bezier(n,n,n,n);  /* 在 cubic-bezier 函数中定义自己的值。可能的值是 0 至 1 之间的数值。 */
+}
+                 </code>
+             </pre>
+
+            <!-- 高亮区 -->
+            <em>4，animation-delay 规定动画何时开始。默认是 0。</em>
+            <pre>
+                 <code class="css">
+/*  animation-delay 值单位可以是秒（s）或毫秒（ms）, 指定秒或毫秒数之前要等待切换效果开始.*/
+/*  提示: 允许负值，-2s 使动画马上开始，但跳过 2 秒进入动画。 */
+div
+{
+    animation-delay:2s;       /*  等待两秒，然后开始动画  */
+    -webkit-animation-delay:2s; /* Safari 和 Chrome */
+    animation-delay: 0;      /* 默认值 0 - 不需要等待，直接执行 */
+}
+                 </code>
+             </pre>
+            <!-- 高亮区 -->
+            <em>5，animation-iteration-count：规定动画被播放的次数。默认是 1。</em>
+            <pre>
+                <code class="css">
+/*  播放三次动画： */
+div
+{
+    animation-iteration-count:3;
+    -webkit-animation-iteration-count:3; /*Safari and Chrome*/
+}     
+/*  默认值 - 1，无限循环 - infinite   */ 
+div
+{
+    animation-iteration-count: infinite ;  /* 	指定动画应该播放无限次（永远） */
+    animation-iteration-count: 1;         /* 默认值 1  */
+}         
+                </code>
+            </pre>
+
+            <!-- 高亮区 -->
+            <em>6，animation-direction：规定动画是否在下一周期逆向地播放。默认是 "normal"。</em>
+            <pre>
+                <code class="css">
+/* 先执行一遍动画，然后再反向执行一遍动画： */
+div
+{
+    animation-direction:alternate;
+    -webkit-animation-direction:alternate; /* Safari 和 Chrome */
+}   
+/*  其他属性值*/ 
+div
+{
+    animation-direction: normal;               /*  默认值。动画按正常播放。  */
+    animation-direction: reverse;              /*  动画反向播放。 */
+    animation-direction: alternate;            /*  动画在奇数次（1、3、5...）正向播放，在偶数次（2、4、6...）反向播放。  */
+    animation-direction: alternate-reverse;    /*  动画在奇数次（1、3、5...）反向播放，在偶数次（2、4、6...）正向播放。 */
+    animation-direction: initial;              /*  设置该属性为它的默认值。 */
+    animation-direction: inherit;              /*  从父元素继承该属性  */
+
+}  
+                </code>
+            </pre>
+            <!-- 高亮区 -->
+            <em>7，animation-play-state： 规定动画是否正在运行或暂停。默认是 "running"。</em>
+            <pre>
+                 <code class="css">
+/*animation--play-state属性指定动画是否正在运行或已暂停。
+注意：在JavaScript中使用此属性在一个周期中暂停动画。*/
+div
+{
+    animation-play-state:running;         /*  指定正在运行的动画  */
+    animation-play-state:paused;          /*  指定暂停动画       */
+    -webkit-animation-play-state:paused;  /* Safari 和 Chrome */
+}
+                 </code>
+             </pre>
+
+            <!-- 高亮区 -->
+            <em>8，animation-fill-mode 规定当动画不播放时（当动画完成时，或当动画有一个延迟未开始播放时），要应用到元素的样式。</em>
+            <pre>
+                 <code class="css">
+div
+{
+    -webkit-animation-fill-mode:forwards;  /*   Safari 和 Chrome */
+
+    animation-fill-mode: none;             /*   默认值。动画在动画执行之前和之后不会应用任何样式到目标元素。 */   
+
+    animation-fill-mode: forwards;         /* 	在动画结束后停在动画帧100%的位置
+                                                在动画结束后（由 animation-iteration-count 决定），动画将应用该属性值。*/ 
+
+    animation-fill-mode: backwards;        /*   忽略原始状态，直接进入动画0%
+                                                动画将应用在 animation-delay 定义期间启动动画的第一次迭代的关键帧中定义的属性值。这些都是 from 关 键帧中的值（当 animation-direction 为 "normal" 或 "alternate" 时）或 to 关键帧中的值（当    animation-direction 为 "reverse" 或 "alternate-reverse" 时）。*/ 
+
+    animation-fill-mode: both;             /*   忽略原始状态，直接进入动画0%，在动画结束后停在动画帧100%的位置
+                                                动画遵循 forwards 和 backwards 的规则。也就是说，动画会在两个方向上扩展动画属性。*/ 
+
+    animation-fill-mode: initial;          /*   设置该属性为它的默认值。 */ 
+
+    animation-fill-mode: inherit;          /*   从父元素继承该属性。    */      
+}
+                 </code>
+             </pre>
+            <!-- 高亮区 -->
+            <em>9，animation ：所有动画属性的简写属性，除了 animation-play-state 属性。</em>
+            <pre>
+                 <code class="css">
+div
+{
+    animation-name: mymove;
+    animation-duration:5s;
+    animation-timing-function:linear;
+    animation-delay:2s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate; 
+    animation-fill-mode: forwards;
+
+    animation: mymove 5s linear 2s infinite alternate;
+}
+                 </code>
+             </pre>
 
                     </div>
                     <div class="m-footer">

@@ -223,12 +223,12 @@
         <div class="maincontent">
             <header class="m-box">
                 <a href="../index.html">首页</a> >
-                <a href="../index.html">HTML/CSS</a> >各大企业网站CSS代码初始化
+                <a href="../index.html">HTML/CSS</a> >HTML5 新增标签及兼容性
             </header>
             <div class="m-box">
                 <article>
                     <div class="m-header">
-                        <h2>各大企业网站CSS代码初始化</h2>
+                        <h2>HTML5 新增标签及兼容性</h2>
                         <div class="m-h-tags">
                             <span>
                                 <i class="iconfont icon-tixing"></i>2017年11月10日</span>
@@ -241,72 +241,101 @@
                         </div>
                     </div>
                     <div class="m-content">
-                        <p>CSS代码初始化，主要用于解决各个浏览器之间的兼容性问题，企业内部会有一套样式规范用于开发。</p>
-                        <!-- 高亮区 -->
-                        <em>腾讯QQ官网 初始化样式</em>
-                        <pre>
-                            <code class="css">  
-body,ol,ul,h1,h2,h3,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select{margin:0;padding:0} 
-body{font:12px"宋体","Arial Narrow",HELVETICA;background:#fff;-webkit-text-size-adjust:100%;} 
-a{color:#2d374b;text-decoration:none} 
-a:hover{color:#cd0200;text-decoration:underline} 
-em{font-style:normal} 
-li{list-style:none} 
-img{border:0;vertical-align:middle} 
-table{border-collapse:collapse;border-spacing:0} 
-p{word-wrap:break-word}                                                                             
-                            </code>
-                         </pre>
-                        <em>新浪官网 初始化样式</em>
-                        <pre>
-                             <code class="css">  
-body,ul,ol,li,p,h1,h2,h3,h4,h5,h6,form,fieldset,table,td,img,div{margin:0;padding:0;border:0;} 
-body{background:#fff;color:#333;font-size:12px; margin-top:5px;font-family:"SimSun","宋体","Arial Narrow";} 
+                                    <!-- 文本内容 -->
+            <p>HTML5万维网的核心语言、标准通用标记语言下的一个应用超文本标记语言的第五次大修改.HTML5将成为 HTML、XHTML 以及 HTML DOM 的新标准。目的是为了在移动设备上支持多媒体。 </p>
+            <p>html5沿袭lhtml语法，在原本的html语法基础上进行优化: 1. Doctype和字符编码的省略写法, 2. 和html一样，标签大小写都可以, 3. Html属性中的引号可以省略，但是属性值中有空格就必须加引号,
+                4.有些标签可以省略.
+            </p>
+            <h3>新增标签：</h3>
+            <!-- 高亮区 -->
+            <em>结构元素</em>
+            <pre>
+                <code class="html">   
+<header></header>	<!-- 页眉 ,也可用于板块头部 -->
+<hgroup></hgroup>   <!--一个标题和一个子标题，或者标语的组合,通常用于包裹多个标题标签-->
+<nav></nav>	       <!-- 导航（链接的的一个列表） -->
+    <!-- 例如 -->
+    <nav>
+        <a href=“#”>链接</a><a href=“#”>链接</a>
+    </nav>
+<section></section>	<!--页面上的区块-->
+<article></article>	<!--定义外部的内容，用来在页面中表示一套结构完整且独立的内容部分。 -->
+<aside></aside>     <!--非正文内容，与页面的主要内容是不太相关的。-->
+<footer></footer>   <!--页面的底部 或者 版块底部-->                                                    
+                </code>
+            </pre>
 
-ul,ol{list-style-type:none;} 
-select,input,img,select{vertical-align:middle;} 
-    
-a{text-decoration:none;} 
-a:link{color:#009;} 
-a:visited{color:#800080;} 
-a:hover,a:active,a:focus{color:#c00;text-decoration:underline;}   
-                            </code>
-                        </pre>
-                        <em>淘宝官网 初始化样式</em>
-                        <pre>
-                              <code class="css">  
-body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, form, fieldset, legend, button, input, textarea, th, td { margin:0; padding:0; } 
-body, button, input, select, textarea { font:12px/1.5tahoma, arial, \5b8b\4f53; } 
-h1, h2, h3, h4, h5, h6{ font-size:100%; } 
-address, cite, dfn, em, var { font-style:normal; } 
-code, kbd, pre, samp { font-family:couriernew, courier, monospace; } 
-small{ font-size:12px; } 
-ul, ol { list-style:none; } 
-a { text-decoration:none; } 
-a:hover { text-decoration:underline; } 
-sup { vertical-align:text-top; } 
-sub{ vertical-align:text-bottom; } 
-legend { color:#000; } 
-fieldset, img { border:0; } 
-button, input, select, textarea { font-size:100%; } 
-table { border-collapse:collapse; border-spacing:0; }    
-                             </code>
-                           </pre>
+            <!-- 高亮区 -->
+            <em>特殊元素</em>
+            <pre>
+                <code class="html">
+<figure> </figure >      <!--用于对元素进行组合。一般用于图片或视频-->
+<figcaption></figcaption><!--为媒体标签中的元素组添加标题-->
+<time></time>            <!--用来表现时间或日期-->
+<datalist></datalist>    <!--定义选项列表。与 input 元素配合使用该元素，来定义 input 可能的值。请使用 input 元素的 list 属性来绑定                               datalist ID。-->    
+<details></details>      <!--用于描述文档或文档某个部分的细节。该元素用于摘录引用等，与<summary> 标签 配合使用-->  
+    <input type="text" list="data"/>
+    <datalist id="data">
+        <option>数据列表，通过id和input的list属性绑定</option>
+        <option>LHP</option>
+        <option>异类</option>
+        <option>小妮子</option>
+        <option>顾你庄颜依旧</option>
+    </datalist>     
+<summary></summary>      <!--details 元素的标题-->      
+<dialog></dialog>        <!--定义一段对话, 默认展开需要添加 open属性-->   
+<address></address>      <!--定义文章 或页面作者的详细联系信息-->
+<meter></meter>          <!--定义已知范围或分数值内的标量测量。也被称为 gauge（尺度）,比如磁盘用量、查询结果的相关性。-->
+    <meter value="29" max="100" min="0" high="60" low="30"></meter>
+<progress><progress> <!--定义进度条-->
+    <progress value="50" max="100"></progress>
+<mark></mark>          <!--需要标记的词或句子，默认黄色背景-->
+                </code>
+            </pre>
 
-                        <em>网易官网 初始化样式</em>
-                        <pre>
-                            <code class="css">  
-html {overflow-y:scroll;} 
-body {margin:0; padding:29px00; font:12px"\5B8B\4F53",sans-serif;background:#ffffff;} 
-div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,blockquote,p{padding:0; margin:0;} 
-table,td,tr,th{font-size:12px;} 
-li{list-style-type:none;} 
-img{vertical-align:top;border:0;} 
-ol,ul {list-style:none;} 
-h1,h2,h3,h4,h5,h6{font-size:12px; font-weight:normal;} 
-address,cite,code,em,th {font-weight:normal; font-style:normal;}           
-                            </code>
-                        </pre>
+            <h3>兼容性</h3>
+            <p>HTML5有部分内容兼容到IE9，IE8及以下对H5完全不兼容，后面的内容不再考虑此类浏览器。最新版本的 Safari、Chrome、Firefox 以及 Opera 支持某些 HTML5 特性。</p>
+            <p>针对IE6-8这些不支持HTML5语义化标签的浏览器我们可以使用javascript来解决他们 方法如下：</p>
+            <!-- 高亮区 -->
+            <p>第一种方法：</p>
+            <em>a, 在页面的头部加下：</em>
+            <pre>
+                <code class="html">
+<script>
+    document.createElement(“header”);
+    document.createElement(“nav”);
+    document.createElement(“footer”);
+</script>                    
+                </code>
+            </pre>
+
+            <!-- 高亮区 -->
+            <em>b 要对这些标签定义一下 它默认的display为block;</em>
+            <pre>
+                 <code class="css">
+header,nav,footer{
+    display:block;
+}
+                 </code>
+             </pre>
+            <p>第二种方法：导入外部js文件</p>
+            <!-- 高亮区 -->
+            <em>在页面的头部加下：</em>
+            <pre>
+                <code class="css">
+<!--[if lt IE 9]>
+<script 					src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js">
+</script>
+<![endif]-->
+                 </code>
+            </pre>
+            <p>查看JS文件：
+                <a href="H5newtag-js.html">html5shiv</a>
+            </p>
+            <p>HTML5结构布局图：
+                <a href="H5newtag-buju.html" target="_blank">html5</a>
+            </p>
+
 
                     </div>
                     <div class="m-footer">

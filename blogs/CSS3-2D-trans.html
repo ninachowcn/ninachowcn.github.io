@@ -16,6 +16,14 @@
     <script>hljs.initHighlightingOnLoad();</script>
 
     <title>Ninachow blog</title>
+<style>
+    h3{
+        font-size: 30px;
+    }
+    h3,strong{
+        font-weight: bolder;
+    }
+</style>
 </head>
 
 <body>
@@ -223,12 +231,12 @@
         <div class="maincontent">
             <header class="m-box">
                 <a href="../index.html">首页</a> >
-                <a href="../index.html">HTML/CSS</a> >各大企业网站CSS代码初始化
+                <a href="../index.html">HTML/CSS</a> >CSS3 2D转换
             </header>
             <div class="m-box">
                 <article>
                     <div class="m-header">
-                        <h2>各大企业网站CSS代码初始化</h2>
+                        <h2>CSS3 2D转换</h2>
                         <div class="m-h-tags">
                             <span>
                                 <i class="iconfont icon-tixing"></i>2017年11月10日</span>
@@ -241,72 +249,56 @@
                         </div>
                     </div>
                     <div class="m-content">
-                        <p>CSS代码初始化，主要用于解决各个浏览器之间的兼容性问题，企业内部会有一套样式规范用于开发。</p>
-                        <!-- 高亮区 -->
-                        <em>腾讯QQ官网 初始化样式</em>
-                        <pre>
-                            <code class="css">  
-body,ol,ul,h1,h2,h3,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select{margin:0;padding:0} 
-body{font:12px"宋体","Arial Narrow",HELVETICA;background:#fff;-webkit-text-size-adjust:100%;} 
-a{color:#2d374b;text-decoration:none} 
-a:hover{color:#cd0200;text-decoration:underline} 
-em{font-style:normal} 
-li{list-style:none} 
-img{border:0;vertical-align:middle} 
-table{border-collapse:collapse;border-spacing:0} 
-p{word-wrap:break-word}                                                                             
-                            </code>
-                         </pre>
-                        <em>新浪官网 初始化样式</em>
-                        <pre>
-                             <code class="css">  
-body,ul,ol,li,p,h1,h2,h3,h4,h5,h6,form,fieldset,table,td,img,div{margin:0;padding:0;border:0;} 
-body{background:#fff;color:#333;font-size:12px; margin-top:5px;font-family:"SimSun","宋体","Arial Narrow";} 
+                        <!-- 文本内容 -->
+            <h3>transform</h3>
+            <p>CSS3 2d转换，可以移动，比例化，反过来，旋转，和拉伸元素。</p>
+            <p>transform /* 一般写法 */</p>
+            <p>-ms-transform /* IE 9 */, </p>
+            <p>-webkit-transform /* Safari and Chrome */</p>
+            <p>
+                <ul>
+                    <li>
+                        <strong>transform : translate(xpx,ypx)</strong>
+                        根据左(X轴)和顶部(Y轴)位置给定的参数，从当前元素位置移动。
+                    </li>
+                    <li>
+                        <strong>transform : rotate(xdeg)</strong>
+                        在一个给定度数顺时针旋转的元素(-360deg ~ +360deg)。负值是允许的，这样是元素逆时针旋转。
+                    </li>
+                    <li>
+                        <strong>transform : scale(x,y)</strong>
+                        该元素增加或减少的大小，取决于宽度（X轴）和高度（Y轴）的参数,通常取倍数值1，1.5，0.5等。
+                    </li>
+                    <li>
+                        <strong>transform : skew(xdeg,ydeg)</strong>
+                        包含两个参数值，分别表示X轴和Y轴倾斜的角度，如果第二个参数为空，则默认为0，参数为负表示向相反方向倾斜。skewX(xdeg);表示只在X轴(水平方向)倾斜。skewY(ydeg);表示只在Y轴(垂直方向)倾斜。
+                    </li>
+                    <li>
+                        <strong>transform : matrix()</strong>
+                        matrix()方法和2D变换方法合并成一个。 matrix 方法有六个参数，包含旋转，缩放，移动（平移）和倾斜功能。
+                    </li>
+                </ul>
+            </p>
+            <em>当transform多个变化组合时，顺序不同，产生的结果也不同</em>
+            <pre>
+                <code class="css"> 
+<!--  放大和移动效果在运动的过程中相互影响，最后产生的结果也是不同的-->
+{transform: scale(2) translate(300px,100px);}
+{transform: translate(300px,100px) scale(2);}                          
+                </code>
+            </pre>
+            <h3>transform-origin</h3>
+            <p>改变转换的中心点，适用与2D，3D转换。</p>
+            <p>transform-origin: (x-axis y-axis z-axis);【默认50% 50%】，效果等同于center center
+            </p>
 
-ul,ol{list-style-type:none;} 
-select,input,img,select{vertical-align:middle;} 
-    
-a{text-decoration:none;} 
-a:link{color:#009;} 
-a:visited{color:#800080;} 
-a:hover,a:active,a:focus{color:#c00;text-decoration:underline;}   
-                            </code>
-                        </pre>
-                        <em>淘宝官网 初始化样式</em>
-                        <pre>
-                              <code class="css">  
-body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, form, fieldset, legend, button, input, textarea, th, td { margin:0; padding:0; } 
-body, button, input, select, textarea { font:12px/1.5tahoma, arial, \5b8b\4f53; } 
-h1, h2, h3, h4, h5, h6{ font-size:100%; } 
-address, cite, dfn, em, var { font-style:normal; } 
-code, kbd, pre, samp { font-family:couriernew, courier, monospace; } 
-small{ font-size:12px; } 
-ul, ol { list-style:none; } 
-a { text-decoration:none; } 
-a:hover { text-decoration:underline; } 
-sup { vertical-align:text-top; } 
-sub{ vertical-align:text-bottom; } 
-legend { color:#000; } 
-fieldset, img { border:0; } 
-button, input, select, textarea { font-size:100%; } 
-table { border-collapse:collapse; border-spacing:0; }    
-                             </code>
-                           </pre>
-
-                        <em>网易官网 初始化样式</em>
-                        <pre>
-                            <code class="css">  
-html {overflow-y:scroll;} 
-body {margin:0; padding:29px00; font:12px"\5B8B\4F53",sans-serif;background:#ffffff;} 
-div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,blockquote,p{padding:0; margin:0;} 
-table,td,tr,th{font-size:12px;} 
-li{list-style-type:none;} 
-img{vertical-align:top;border:0;} 
-ol,ul {list-style:none;} 
-h1,h2,h3,h4,h5,h6{font-size:12px; font-weight:normal;} 
-address,cite,code,em,th {font-weight:normal; font-style:normal;}           
-                            </code>
-                        </pre>
+            <!-- 高亮区 -->
+            <pre>
+                <code class="css">
+{transform-origin:20% 40%;}
+{transform-origin:20px 40px 10px;}
+                </code>
+            </pre>
 
                     </div>
                     <div class="m-footer">

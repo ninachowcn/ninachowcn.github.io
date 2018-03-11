@@ -68,3 +68,10 @@
 .m-box article .m-footer img:hover{
     transform: rotate(-20deg);
 }
+
+h3{
+    font-size: 30px;
+}
+h3,strong{
+    font-weight: bolder;
+}
