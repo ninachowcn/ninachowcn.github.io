@@ -5,7 +5,13 @@ header{
     height:100px;
     padding-top:50px;
     border-bottom: 2px solid rgba(26, 166, 197, 0.671);
-    background: url("../images/header-bg.jpg") no-repeat left -50px/cover;
+    background-color: #026873;
+    background-image: linear-gradient(90deg, rgba(255,255,255,.07) 50%, transparent 50%),
+    linear-gradient(90deg, rgba(255,255,255,.13) 50%, transparent 50%),
+    linear-gradient(90deg, transparent 50%, rgba(255,255,255,.17) 50%),
+    linear-gradient(90deg, transparent 50%, rgba(255,255,255,.19) 50%);
+    background-size: 13px, 29px, 37px, 53px;
+    /* background: url("../images/header-bg.jpg") no-repeat left -50px/cover; */
 }
 header .h-title{
     width:1200px;
@@ -39,7 +45,7 @@ header .h-title hgroup{
     display: inline-block;
     font-size: 14px;
     padding-left:2em;
-    color: #666;
+    color: rgb(51, 49, 49);
 }
 nav{
     position: relative;

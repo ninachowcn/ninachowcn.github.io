@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>job</title>
+    <link rel="stylesheet" href="../css/workshow.css">
+</head>
+<style>
+    html,body{
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        height: 100%;
+        width:100%;
+        background-color:black;
+    }
+</style>
+<body data-gr-c-s-loaded="true">
+    <canvas id="canvas" width="1608" height="361"></canvas>
+    <div id="wrap">
+        <div class="showplace">
+            <a href="3D-heart/3D-heart.html" target="_blank" class="d-block">
+                <img src="img-workshow/3dheart.jpg" alt="">
+            </a>
+            <a href="ballBit/index.html" target="_blank" class="d-block">
+                <img src="img-workshow/ballBit.jpg" alt="">
+            </a>
+            <a href="balloon/balloon.html" target="_blank" class="d-block">
+                <img src="img-workshow/balloon.jpg" alt="">
+            </a>
+            <a href="WorldClock/clock.html" target="_blank" class="d-block">
+                <img src="img-workshow/clock.jpg" alt="">
+            </a>
+            <a href="CSSProgramsGather/index.html" target="_blank" class="d-block">
+                <img src="img-workshow/CSSProgramsGather.jpg" alt="">
+            </a>
+            <a href="Banners/dome-huayang.html" target="_blank" class="d-block">
+                <img src="img-workshow/dome-huayang.jpg" alt="">
+            </a>
+            <a href="https://codepen.io/ninachow/full/KXoopB/" target="_blank" class="d-block">
+                <img src="img-workshow/FCC-leader.jpg" alt="">
+            </a>
+            <a href="miaowei/index.html" target="_blank" class="d-block">
+                <img src="img-workshow/forign-shopping-2.jpg" alt="">
+            </a>
+            <a href="Guess/guess.html" target="_blank" class="d-block">
+                <img src="img-workshow/guess.jpg" alt="">
+            </a>
+            <a href="music-iPhone/index.html" target="_blank" class="d-block">
+                <img src="img-workshow/music-iPhone.jpg" alt="">
+            </a>
+            <a href="https://codepen.io/ninachow/full/OjeEBZ/" target="_blank" class="d-block">
+                <img src="img-workshow/piano.jpg" alt="">
+            </a>
+            <a href="https://codepen.io/ninachow/full/vJWLER/" target="_blank" class="d-block">
+                <img src="img-workshow/pomodoroTimer.jpg" alt="">
+            </a>
+            <a href="m-taobao/index.html" target="_blank" class="d-block">
+                <img src="img-workshow/taobao-phone-2.jpg" alt="">
+            </a>
+            <a href="tmall/index.html" target="_blank" class="d-block">
+                <img src="img-workshow/Tmall-2.jpg" alt="">
+            </a>
+            <a href="zhezhao/index.html" target="_blank" class="d-block">
+                <img src="img-workshow/zhezhao.jpg" alt="">
+            </a>        
+        </div>
+    </div>
+<script src="../js/starRiver.js"></script>
+<script>
+    window.onload = function(){
+        var aImg = document.getElementsByTagName("img");
+        var showplace = document.getElementsByClassName("showplace")[0];
+        var Deg = 360/aImg.length;
+
+        Array.prototype.forEach.call(aImg,function(el,index){
+            el.style.transform = "rotateY("+ Deg*index +"deg) translateZ(400px)";
+            el.style.transitionDelay = 0.1 *(aImg.length - index)+"s";
+        })
+
+        var newX,newY,lastX,lastY;
+        var mulX, mulY;
+        var votX=-20,votY=0;
+        var timer;
+         
+        document.onmousedown = function(e){
+            lastX = e.clientX;
+            lastY = e.clientY;
+
+            this.onmousemove = function(e){
+                
+                newX = e.clientX;
+                newY = e.clientY;
+                mulX = newX - lastX;
+                mulY = newY - lastY;
+                votX -= mulY*0.3;
+                votY += mulX*0.1;
+
+
+                showplace.style.transform = "rotateX("+ votX +"deg) rotateY("+ votY +"deg)";
+
+                lastX = newX;
+                lastY = newY;
+            }
+            this.onmouseup = function(){
+                this.onmousemove = null;
+            }
+        }  
+    }
+
+    function autoMove( votY,showplace){
+        
+        var timer = setInterval(function(){
+            votY = votY + 1;
+            showplace.style.transform = "rotateX(-20deg) rotateY("+ votY +"deg)";
+        
+        },60)
+        return timer;
+    }
+       
+</script>
+</body>
+</html>
